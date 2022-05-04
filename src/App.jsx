@@ -13,6 +13,7 @@ import NotFound from "./Pages/NotFound/NotFound";
 //TODO: create home page
 
 //TODO: clean up Social Button and Icon code
+//TODO: optional:design the logo perfectly
 
 function App() {
     return (

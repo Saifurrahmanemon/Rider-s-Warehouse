@@ -37,7 +37,7 @@ export default function Register(props) {
         <Container size={420} my={50}>
             <Paper radius="md" p="xl" withBorder>
                 <Text size="lg" weight={500}>
-                    Welcome to Motors, Register with
+                    Welcome to Rider's Warehouse, Register with
                 </Text>
 
                 <Group grow mb="md" mt="md">

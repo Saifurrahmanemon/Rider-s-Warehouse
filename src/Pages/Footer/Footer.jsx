@@ -1,33 +1,8 @@
-import { Anchor, Container, createStyles, Group } from "@mantine/core";
+import { Anchor, Container, Group } from "@mantine/core";
 import React from "react";
+import { useFooterStyles } from "./Footer.styles";
 
-const useStyles = createStyles((theme) => ({
-    footer: {
-        marginTop: 20,
-        borderTop: `1px solid ${
-            theme.colorScheme === "dark"
-                ? theme.colors.dark[5]
-                : theme.colors.gray[2]
-        }`,
-    },
-
-    inner: {
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        paddingBottom: theme.spacing.md,
-
-        [theme.fn.smallerThan("xs")]: {
-            flexDirection: "column",
-        },
-    },
-
-    links: {
-        [theme.fn.smallerThan("xs")]: {
-            marginTop: theme.spacing.sm,
-        },
-    },
-}));
+//TODO: make the links working
 const links = [
     {
         link: "#",
@@ -47,7 +22,7 @@ const links = [
     },
 ];
 export default function Footer() {
-    const { classes } = useStyles();
+    const { classes } = useFooterStyles();
     const items = links.map((link) => (
         <Anchor
             color="dimmed"

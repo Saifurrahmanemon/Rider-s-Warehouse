@@ -33,7 +33,7 @@ export default function Login(props) {
         <Container size={420} my={40}>
             <Paper radius="md" p="xl" withBorder>
                 <Text size="lg" weight={500}>
-                    Welcome to Motors, Login with
+                    Welcome to Rider's Warehouse, Login with
                 </Text>
 
                 <Group grow mb="md" mt="md">
