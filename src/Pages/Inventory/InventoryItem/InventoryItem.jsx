@@ -2,7 +2,7 @@ import { Badge, Button, Card, Group, Image, Text } from "@mantine/core";
 import { useInventoryItemStyles } from "./InventoryItem.styles";
 
 function InventoryItem({ item }) {
-    const { name, img, description, id, supplier } = item;
+    const { name, img, description, price, supplier } = item;
     const { classes } = useInventoryItemStyles();
 
     return (
@@ -41,7 +41,7 @@ function InventoryItem({ item }) {
                 <Group spacing={30}>
                     <div>
                         <Text size="xl" weight={700} sx={{ lineHeight: 1 }}>
-                            $168.00
+                            ${price}
                         </Text>
                         <Text
                             size="sm"
@@ -54,7 +54,12 @@ function InventoryItem({ item }) {
                         </Text>
                     </div>
 
-                    <Button radius="xl" style={{ flex: 1 }}>
+                    <Button
+                        variant="gradient"
+                        gradient={{ from: "pink", to: "violet", deg: 45 }}
+                        radius="xl"
+                        style={{ flex: 1 }}
+                    >
                         Rent now
                     </Button>
                 </Group>

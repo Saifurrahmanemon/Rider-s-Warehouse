@@ -117,7 +117,11 @@ export default function Register(props) {
                         >
                             Don't have an account? Register
                         </Anchor>
-                        <Button type="submit" variant="outline">
+                        <Button
+                            type="submit"
+                            gradient={{ from: "pink", to: "violet" }}
+                            variant="gradient"
+                        >
                             Register
                         </Button>
                     </Group>

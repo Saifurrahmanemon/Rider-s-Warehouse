@@ -12,6 +12,7 @@ import { useBooleanToggle } from "@mantine/hooks";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { BrandInstagram, BrandTwitter, BrandYoutube } from "tabler-icons-react";
+import ThemeToggleButton from "../Shared/ThemeToggleButton";
 import { HEADER_HEIGHT, useAppHeaderStyles } from "./Header.styles";
 
 const links = [
@@ -85,6 +86,7 @@ export function AppHeader() {
                     <ActionIcon size="lg">
                         <BrandInstagram size={18} />
                     </ActionIcon>
+                    <ThemeToggleButton />
                 </Group>
 
                 <Burger

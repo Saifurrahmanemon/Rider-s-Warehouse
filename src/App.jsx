@@ -1,4 +1,5 @@
-import { MantineProvider } from "@mantine/core";
+import { ColorSchemeProvider, MantineProvider } from "@mantine/core";
+import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import About from "./Pages/About/About";
@@ -9,7 +10,6 @@ import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login/Login";
 import Register from "./Pages/Login/Register/Register";
 import NotFound from "./Pages/NotFound/NotFound";
-
 //TODO: you can add react helmet if you want
 //TODO: create home page
 
@@ -17,24 +17,35 @@ import NotFound from "./Pages/NotFound/NotFound";
 //TODO: optional:design the logo perfectly
 
 function App() {
+    const [colorScheme, setColorScheme] = useState("light");
+    const toggleColorScheme = (value) =>
+        setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
     return (
-        <MantineProvider
-            // theme={{ colorScheme: "dark" }}
-            withGlobalStyles
-            withNormalizeCSS
+        <ColorSchemeProvider
+            colorScheme={colorScheme}
+            toggleColorScheme={toggleColorScheme}
         >
-            <AppHeader></AppHeader>
-            <Routes>
-                <Route path="/" element={<Home></Home>}></Route>
-                <Route path="/login" element={<Login></Login>}></Route>
-                <Route path="/register" element={<Register></Register>}></Route>
-                <Route path="/home" element={<Home></Home>}></Route>
-                <Route path="/about" element={<About></About>}></Route>
-                <Route path="/blog" element={<Blog></Blog>}></Route>
-                <Route path="*" element={<NotFound></NotFound>}></Route>
-            </Routes>
-            <Footer></Footer>
-        </MantineProvider>
+            <MantineProvider
+                theme={{ colorScheme }}
+                withGlobalStyles
+                withNormalizeCSS
+            >
+                <AppHeader></AppHeader>
+                <Routes>
+                    <Route path="/" element={<Home></Home>}></Route>
+                    <Route path="/login" element={<Login></Login>}></Route>
+                    <Route
+                        path="/register"
+                        element={<Register></Register>}
+                    ></Route>
+                    <Route path="/home" element={<Home></Home>}></Route>
+                    <Route path="/about" element={<About></About>}></Route>
+                    <Route path="/blog" element={<Blog></Blog>}></Route>
+                    <Route path="*" element={<NotFound></NotFound>}></Route>
+                </Routes>
+                <Footer></Footer>
+            </MantineProvider>
+        </ColorSchemeProvider>
     );
 }
 
