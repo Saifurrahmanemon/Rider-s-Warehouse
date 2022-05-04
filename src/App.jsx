@@ -9,7 +9,6 @@ import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login/Login";
 import Register from "./Pages/Login/Register/Register";
 import NotFound from "./Pages/NotFound/NotFound";
-import { theme } from "./utils/theme";
 
 //TODO: you can add react helmet if you want
 //TODO: create home page
@@ -19,7 +18,11 @@ import { theme } from "./utils/theme";
 
 function App() {
     return (
-        <MantineProvider theme={theme} withGlobalStyles withNormalizeCSS>
+        <MantineProvider
+            // theme={{ colorScheme: "dark" }}
+            withGlobalStyles
+            withNormalizeCSS
+        >
             <AppHeader></AppHeader>
             <Routes>
                 <Route path="/" element={<Home></Home>}></Route>

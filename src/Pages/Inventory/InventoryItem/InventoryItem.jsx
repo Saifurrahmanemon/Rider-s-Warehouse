@@ -1,11 +1,66 @@
-import React from "react";
+import { Badge, Button, Card, Group, Image, Text } from "@mantine/core";
+import { useInventoryItemStyles } from "./InventoryItem.styles";
 
-const InventoryItem = () => {
+function InventoryItem({ item }) {
+    const { name, img, description, id, supplier } = item;
+    const { classes } = useInventoryItemStyles();
+
     return (
-        <div>
-            <h1>hello world</h1>
-        </div>
+        <Card
+            shadow="sm"
+            p="lg"
+            withBorder
+            radius="md"
+            className={classes.card}
+        >
+            <Card.Section component="a" target="_blank">
+                <Card.Section pb="md" className={classes.imageSection}>
+                    <Image
+                        p={3}
+                        src={img}
+                        alt="Tesla Model S"
+                        height={200}
+                        withPlaceholder
+                        radius="md"
+                    />
+                </Card.Section>
+            </Card.Section>
+
+            <Group position="apart" pt="md" style={{ marginBottom: 5 }}>
+                <Text weight={500}>{name}</Text>
+                <Badge color="pink" variant="light">
+                    {supplier}
+                </Badge>
+            </Group>
+
+            <Text lineClamp={4} mt="xl" mb="xl" color="dimmed" size="xs">
+                {description}
+            </Text>
+
+            <Card.Section className={classes.section}>
+                <Group spacing={30}>
+                    <div>
+                        <Text size="xl" weight={700} sx={{ lineHeight: 1 }}>
+                            $168.00
+                        </Text>
+                        <Text
+                            size="sm"
+                            color="dimmed"
+                            weight={500}
+                            sx={{ lineHeight: 1 }}
+                            mt={4}
+                        >
+                            Single
+                        </Text>
+                    </div>
+
+                    <Button radius="xl" style={{ flex: 1 }}>
+                        Rent now
+                    </Button>
+                </Group>
+            </Card.Section>
+        </Card>
     );
-};
+}
 
 export default InventoryItem;
