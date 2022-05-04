@@ -1,11 +1,121 @@
+import {
+    Anchor,
+    Button,
+    Checkbox,
+    Container,
+    Divider,
+    Group,
+    Paper,
+    PasswordInput,
+    Text,
+    TextInput,
+} from "@mantine/core";
+import { useForm } from "@mantine/hooks";
 import React from "react";
+import { FacebookButton, GoogleButton } from "../../Shared/SocialButtons";
 
-const Register = () => {
+export default function Register(props) {
+    const form = useForm({
+        initialValues: {
+            email: "",
+            name: "",
+            password: "",
+            terms: true,
+        },
+
+        validationRules: {
+            email: (val) => /^\S+@\S+$/.test(val),
+            password: (val) => val.length >= 6,
+        },
+    });
+
     return (
-        <div>
-            <h1>register</h1>
-        </div>
-    );
-};
+        <Container size={420} my={40}>
+            <Paper radius="md" p="xl" withBorder>
+                <Text size="lg" weight={500}>
+                    Welcome to Motors, Register with
+                </Text>
 
-export default Register;
+                <Group grow mb="md" mt="md">
+                    <GoogleButton radius="xl">Google</GoogleButton>
+                    <FacebookButton radius="xl">Twitter</FacebookButton>
+                </Group>
+
+                <Divider
+                    label="Or continue with email"
+                    labelPosition="center"
+                    my="lg"
+                />
+
+                <form onSubmit={form.onSubmit(() => {})}>
+                    <Group direction="column" grow>
+                        <TextInput
+                            required
+                            label="Email"
+                            placeholder="hello@mantine.dev"
+                            value={form.values.email}
+                            onChange={(event) =>
+                                form.setFieldValue(
+                                    "email",
+                                    event.currentTarget.value
+                                )
+                            }
+                            error={form.errors.email && "Invalid email"}
+                        />
+                        <TextInput
+                            label="Name"
+                            placeholder="Your name"
+                            value={form.values.name}
+                            onChange={(event) =>
+                                form.setFieldValue(
+                                    "name",
+                                    event.currentTarget.value
+                                )
+                            }
+                        />
+
+                        <PasswordInput
+                            required
+                            label="Password"
+                            placeholder="Your password"
+                            value={form.values.password}
+                            onChange={(event) =>
+                                form.setFieldValue(
+                                    "password",
+                                    event.currentTarget.value
+                                )
+                            }
+                            error={
+                                form.errors.password &&
+                                "Password should include at least 6 characters"
+                            }
+                        />
+
+                        <Checkbox
+                            label="I accept terms and conditions"
+                            checked={form.values.terms}
+                            onChange={(event) =>
+                                form.setFieldValue(
+                                    "terms",
+                                    event.currentTarget.checked
+                                )
+                            }
+                        />
+                    </Group>
+
+                    <Group position="apart" mt="xl">
+                        <Anchor
+                            component="button"
+                            type="button"
+                            color="gray"
+                            size="xs"
+                        >
+                            Don't have an account? Register
+                        </Anchor>
+                        <Button type="submit">Register</Button>
+                    </Group>
+                </form>
+            </Paper>
+        </Container>
+    );
+}
