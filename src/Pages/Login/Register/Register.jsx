@@ -12,9 +12,13 @@ import {
 } from "@mantine/core";
 import { useForm } from "@mantine/hooks";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { FacebookButton, GoogleButton } from "../../Shared/SocialButtons";
 
 export default function Register(props) {
+    const navigate = useNavigate();
+
+    // for from validation
     const form = useForm({
         initialValues: {
             email: "",
@@ -30,7 +34,7 @@ export default function Register(props) {
     });
 
     return (
-        <Container size={420} my={40}>
+        <Container size={420} my={50}>
             <Paper radius="md" p="xl" withBorder>
                 <Text size="lg" weight={500}>
                     Welcome to Motors, Register with
@@ -38,7 +42,7 @@ export default function Register(props) {
 
                 <Group grow mb="md" mt="md">
                     <GoogleButton radius="xl">Google</GoogleButton>
-                    <FacebookButton radius="xl">Twitter</FacebookButton>
+                    <FacebookButton radius="xl">Facebook</FacebookButton>
                 </Group>
 
                 <Divider
@@ -109,10 +113,13 @@ export default function Register(props) {
                             type="button"
                             color="gray"
                             size="xs"
+                            onClick={() => navigate("/login")}
                         >
                             Don't have an account? Register
                         </Anchor>
-                        <Button type="submit">Register</Button>
+                        <Button type="submit" variant="outline">
+                            Register
+                        </Button>
                     </Group>
                 </form>
             </Paper>

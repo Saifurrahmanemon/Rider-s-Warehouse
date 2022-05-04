@@ -105,6 +105,17 @@ const useAppHeaderStyles = createStyles((theme) => ({
             marginRight: "auto",
         },
     },
+    logo: {
+        fontFamily: "Caveat",
+        fontWeight: 800,
+        marginRight: 10,
+
+        fontSize: theme.fontSizes.xl * 1.8,
+        color: theme.colors.blue[8],
+        [theme.fn.smallerThan("sm")]: {
+            fontSize: theme.fontSizes.xl,
+        },
+    },
 }));
 
 const links = [
@@ -154,7 +165,7 @@ export function AppHeader() {
                 <Group spacing={5} className={classes.links}>
                     {items}
                 </Group>
-                <h1>logo</h1>
+                <h1 className={classes.logo}>Rider's Warehouse</h1>
                 <Group
                     spacing={0}
                     className={classes.social}
