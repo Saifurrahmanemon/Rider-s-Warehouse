@@ -54,7 +54,7 @@ export const useAppHeaderStyles = createStyles((theme) => ({
         color:
             theme.colorScheme === "dark"
                 ? theme.colors.dark[0]
-                : theme.colors.gray[7],
+                : theme.colors.violet[7],
         fontSize: theme.fontSizes.sm,
         fontWeight: 500,
 
@@ -62,7 +62,7 @@ export const useAppHeaderStyles = createStyles((theme) => ({
             backgroundColor:
                 theme.colorScheme === "dark"
                     ? theme.colors.dark[6]
-                    : theme.colors.gray[0],
+                    : theme.colors.violet[0],
         },
 
         [theme.fn.smallerThan("sm")]: {
@@ -76,10 +76,8 @@ export const useAppHeaderStyles = createStyles((theme) => ({
             backgroundColor:
                 theme.colorScheme === "dark"
                     ? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
-                    : theme.colors[theme.primaryColor][0],
-            color: theme.colors[theme.primaryColor][
-                theme.colorScheme === "dark" ? 3 : 7
-            ],
+                    : theme.colors.violet[0],
+            color: theme.colors.violet[theme.colorScheme === "dark" ? 3 : 7],
         },
     },
     social: {

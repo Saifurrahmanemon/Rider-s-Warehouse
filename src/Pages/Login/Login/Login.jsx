@@ -91,7 +91,11 @@ export default function Login(props) {
                         >
                             Already have an account? Login
                         </Anchor>
-                        <Button type="submit" variant="outline">
+                        <Button
+                            type="submit"
+                            gradient={{ from: "pink", to: "violet" }}
+                            variant="gradient"
+                        >
                             Login
                         </Button>
                     </Group>

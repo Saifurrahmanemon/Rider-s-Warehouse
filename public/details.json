@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "name": "HONDA CBR1000SP",
+        "price": "13300",
+        "supplier":"HONDA",
+        "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
+        "img": "https://i.ibb.co/YdmL1wT/honda-315032-2021-HONDA-NC750-X.jpg"
+    },
+    {
+        "id": 2,
+        "name": "KAWASAKI NINJA 1000 SX SE",
+        "price": "5000",
+        "supplier":"KAWASAKI",
+        "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
+        "img": "https://i.ibb.co/QpMjGq0/kawasaki-KAWASAKININJA400-ABS.jpg"
+    },
+    {
+        "id": 3,
+        "name": "KAWASAKI NINJA 400 ABS",
+        "price": "9438",
+        "supplier":"KAWASAKI",
+        "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
+        "img": "https://i.ibb.co/5Fm1MNJ/kawasaki-KAWASAKININJA1000-SXSE.jpg"
+    },
+    {
+        "id": 4,
+        "name": "SUZUKI DL1050RCMO",
+        "price": "3999",
+        "supplier":"SUZUKI",
+        "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
+        "img": "hhttps://i.ibb.co/fntQchS/SUZUKI-DL1050-RCMO.jpg"
+    },
+    {
+        "id": 5,
+        "name": "SUZUKI VZR1800 Cruiser",
+        "price": "10000",
+        "supplier":"SUZUKI",
+        "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa.",
+        "img": "https://i.ibb.co/BVxtTJz/Suzuki-VZR1800-Cruiser.jpg"
+    },
+    {
+        "id": 6,
+        "name": "SUZUKI GSX-S1000GTM2",
+        "price": "3300",
+        "supplier":"SUZUKI",
+        "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa",
+        "img": "https://i.ibb.co/4SpRyH7/Suzuki-GSX-S1000-GTM2.jpg"
+    },
+    {
+        "id": 7,
+        "name": "HUSQVARNA 701 Enduro",
+        "price": "2600",
+        "supplier":"HUSQVARNA",
+        "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa",
+        "img": "https://i.ibb.co/m48bVwJ/Husqvarna-701-Enduro.jpg"
+    },
+    {
+        "id": 8,
+        "name": "HUSQVARNA FS450",
+        "price": "3000",
+        "supplier":"HUSQVARNA",
+        "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa",
+        "img": "https://i.ibb.co/JHs3Y62/Husqvarna-FS450.jpg"
+    },
+    {
+        "id": 9,
+        "name": "HONDA CRF1100A",
+        "price": "3000",
+        "supplier":"HONDA",
+        "description": "Lorem ipsum dolor sit amet, consectetu radipisi cing elitBeatae autem aperiam nequ quaera molestias voluptatibus harum ametipsa",
+        "img": "https://i.ibb.co/30WkzCB/Honda-CRF1100-A.jpg"
+    }
+]

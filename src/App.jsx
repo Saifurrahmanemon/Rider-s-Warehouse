@@ -1,3 +1,4 @@
+import { MantineProvider } from "@mantine/core";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import About from "./Pages/About/About";
@@ -8,6 +9,7 @@ import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login/Login";
 import Register from "./Pages/Login/Register/Register";
 import NotFound from "./Pages/NotFound/NotFound";
+import { theme } from "./utils/theme";
 
 //TODO: you can add react helmet if you want
 //TODO: create home page
@@ -17,7 +19,7 @@ import NotFound from "./Pages/NotFound/NotFound";
 
 function App() {
     return (
-        <div>
+        <MantineProvider theme={theme} withGlobalStyles withNormalizeCSS>
             <AppHeader></AppHeader>
             <Routes>
                 <Route path="/" element={<Home></Home>}></Route>
@@ -29,7 +31,7 @@ function App() {
                 <Route path="*" element={<NotFound></NotFound>}></Route>
             </Routes>
             <Footer></Footer>
-        </div>
+        </MantineProvider>
     );
 }
 
