@@ -9,9 +9,17 @@ import {
     Transition,
 } from "@mantine/core";
 import { useBooleanToggle } from "@mantine/hooks";
+import { signOut } from "firebase/auth";
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
-import { BrandInstagram, BrandTwitter, BrandYoutube } from "tabler-icons-react";
+import {
+    BrandInstagram,
+    BrandTwitter,
+    BrandYoutube,
+    Logout,
+} from "tabler-icons-react";
+import auth from "../../firebase.init";
 import ThemeToggleButton from "../Shared/ThemeToggleButton";
 import { HEADER_HEIGHT, useAppHeaderStyles } from "./Header.styles";
 
@@ -35,9 +43,14 @@ const links = [
 ];
 
 export function AppHeader() {
+    const [user] = useAuthState(auth);
     const [opened, toggleOpened] = useBooleanToggle(false);
     const [active, setActive] = useState(links[0].link);
     const { classes, cx } = useAppHeaderStyles();
+
+    const handleSignOut = () => {
+        signOut(auth);
+    };
 
     // for navigating to different pages
     const items = links.map((link) => (
@@ -86,6 +99,17 @@ export function AppHeader() {
                     <ActionIcon size="lg">
                         <BrandInstagram size={18} />
                     </ActionIcon>
+
+                    {user && (
+                        <ActionIcon mr="xs" size="lg">
+                            <Logout
+                                onClick={handleSignOut}
+                                size={18}
+                                strokeWidth={1.5}
+                                color={"red"}
+                            />
+                        </ActionIcon>
+                    )}
                     <ThemeToggleButton />
                 </Group>
 

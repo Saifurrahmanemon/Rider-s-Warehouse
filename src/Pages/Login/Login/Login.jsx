@@ -12,9 +12,8 @@ import {
 import { useForm } from "@mantine/hooks";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { FacebookButton, GoogleButton } from "../../Shared/SocialButtons";
-
-export default function Login(props) {
+import SocialLogin from "../../Shared/SocialLogin";
+function Login(props) {
     const navigate = useNavigate();
     // for form validation
     const form = useForm({
@@ -35,12 +34,7 @@ export default function Login(props) {
                 <Text size="lg" weight={500}>
                     Welcome to Rider's Warehouse, Login with
                 </Text>
-
-                <Group grow mb="md" mt="md">
-                    <GoogleButton radius="xl">Google</GoogleButton>
-                    <FacebookButton radius="xl">Facebook</FacebookButton>
-                </Group>
-
+                <SocialLogin />
                 <Divider
                     label="Or continue with email"
                     labelPosition="center"
@@ -104,3 +98,4 @@ export default function Login(props) {
         </Container>
     );
 }
+export default Login;

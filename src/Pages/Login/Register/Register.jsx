@@ -13,7 +13,7 @@ import {
 import { useForm } from "@mantine/hooks";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { FacebookButton, GoogleButton } from "../../Shared/SocialButtons";
+import SocialLogin from "../../Shared/SocialLogin";
 
 export default function Register(props) {
     const navigate = useNavigate();
@@ -40,10 +40,7 @@ export default function Register(props) {
                     Welcome to Rider's Warehouse, Register with
                 </Text>
 
-                <Group grow mb="md" mt="md">
-                    <GoogleButton radius="xl">Google</GoogleButton>
-                    <FacebookButton radius="xl">Facebook</FacebookButton>
-                </Group>
+                <SocialLogin />
 
                 <Divider
                     label="Or continue with email"
@@ -118,6 +115,7 @@ export default function Register(props) {
                             Don't have an account? Register
                         </Anchor>
                         <Button
+                            disabled={!form.values.terms}
                             type="submit"
                             gradient={{ from: "pink", to: "violet" }}
                             variant="gradient"

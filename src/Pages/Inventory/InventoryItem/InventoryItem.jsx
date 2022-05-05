@@ -1,9 +1,11 @@
 import { Badge, Button, Card, Group, Image, Text } from "@mantine/core";
+import { useNavigate } from "react-router-dom";
 import { useInventoryItemStyles } from "./InventoryItem.styles";
 
 function InventoryItem({ item }) {
-    const { name, img, description, price, supplier } = item;
+    const { name, img, description, price, id, supplier } = item;
     const { classes } = useInventoryItemStyles();
+    const navigate = useNavigate();
 
     return (
         <Card
@@ -59,8 +61,9 @@ function InventoryItem({ item }) {
                         gradient={{ from: "pink", to: "violet", deg: 45 }}
                         radius="xl"
                         style={{ flex: 1 }}
+                        onClick={() => navigate(`/inventory/${id}`)}
                     >
-                        Rent now
+                        Manage Stock
                     </Button>
                 </Group>
             </Card.Section>
