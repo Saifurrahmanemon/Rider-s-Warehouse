@@ -1,74 +1,74 @@
 [
     {
-        "id": 1,
         "name": "CBR1000SP",
         "price": "13300",
+        "quantity":8,
         "supplier":"HONDA",
         "description": "Bringing you an extraordinary riding thrill, CBR1000SP FIREBLADE, is equipped with a list of jaw-dropping features. It comes with semi-active Öhlins Electronic Control Suspensions, Selectable Engine Brake,",
-        "img": "https://i.ibb.co/YdmL1wT/honda-315032-2021-HONDA-NC750-X.jpg"
+        "img": "https://i.ibb.co/zfrxm5q/honda-315032-2021-HONDA-NC750-X-1.jpg"
     },
     {
-        "id": 2,
         "name": "NINJA 1000 SX SE",
         "price": "5000",
+        "quantity":5,
         "supplier":"KAWASAKI",
         "description": "The Kawasaki Ninja 1000 is fast without being “champing at the bit” fast, fully-equipped without being too heavy, and sporty while still being ride-all-day comfortable for most people.",
-        "img": "https://i.ibb.co/QpMjGq0/kawasaki-KAWASAKININJA400-ABS.jpg"
+        "img": "https://i.ibb.co/WKb2Rf6/kawasaki-KAWASAKININJA400-ABS-2.jpg"
     },
     {
-        "id": 3,
         "name": " NINJA 400 ABS",
         "price": "9438",
+        "quantity":7,
         "supplier":"KAWASAKI",
         "description": "The 2022 Kawasaki Ninja® 400 ABS motorcycle features a lightweight trellis frame and a compact 399cc twin-cylinder engine that delivers class-leading performance",
         "img": "https://i.ibb.co/5Fm1MNJ/kawasaki-KAWASAKININJA1000-SXSE.jpg"
     },
     {
-        "id": 4,
         "name": "DL1050RCMO",
         "price": "3999",
+        "quantity":9,
         "supplier":"SUZUKI",
         "description": "Renowned for versatility, reliability, and value, Suzuki's V-Strom 650 models have attracted many riders who use their motorcycles for touring, commuting, or a fun ride when the spirit moves them",
         "img": "https://i.ibb.co/fntQchS/SUZUKI-DL1050-RCMO.jpg"
     },
     {
-        "id": 5,
         "name": " VZR1800 Cruiser",
         "price": "10000",
+        "quantity":7,
         "supplier":"SUZUKI",
         "description": "This is the performance cruiser other bikes wish they were. The dark and muscular M109R B.O.S.S. has a powerful V-twin engine using some of the largest pistons in the industry – a bike that will get your adrenaline flowing whenever you ride.",
         "img": "https://i.ibb.co/BVxtTJz/Suzuki-VZR1800-Cruiser.jpg"
     },
     {
-        "id": 6,
         "name": "GSX-S1000GTM2",
         "price": "3300",
+        "quantity":4,
         "supplier":"SUZUKI",
         "description": "Superbike derived performance paired with the latest technology and all-day comfort allows the new GSX-S1000GT to deliver next level sports touring experience for both rider and pillion. ",
         "img": "https://i.ibb.co/4SpRyH7/Suzuki-GSX-S1000-GTM2.jpg"
     },
     {
-        "id": 7,
         "name": "701 Enduro",
         "price": "2600",
+        "quantity":5,
         "supplier":"HUSQVARNA",
         "description": "With the ability to conquer urban environments and treacherous offroad terrain with equal composure, the 701 ENDURO reaches the next level of versatility",
         "img": "https://i.ibb.co/m48bVwJ/Husqvarna-701-Enduro.jpg"
     },
     {
-        "id": 8,
         "name": "FS450",
         "price": "3000",
+        "quantity":6,
         "supplier":"HUSQVARNA",
         "description": "The pinnacle of Husqvarna supermoto competition, the FS 450 uses advanced engineering techniques to not only draw 63 hp from the 450cc motor, but also position the engine closer to the centre of gravity to vastly improve handling and manoeuvrability.",
         "img": "https://i.ibb.co/JHs3Y62/Husqvarna-FS450.jpg"
     },
     {
-        "id": 9,
         "name": "CRF1100A",
         "price": "3000",
+        "quantity":3,
         "supplier":"HONDA",
         "description": "The Africa Twin is built to be used. Hard. On or off-road in the toughest conditions.built-in advanced riding technology all of which is easily controlled by a  Multi Information Display (MID) TFT touch screen interface.",
-        "img": "https://i.ibb.co/30WkzCB/Honda-CRF1100-A.jpg"
+        "img": "https://i.ibb.co/1MLH7kn/Honda-CRF1100-A-1.jpg"
     }
 ]

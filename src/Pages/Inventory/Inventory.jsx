@@ -8,7 +8,7 @@ const Inventory = () => {
     // show only six items in the home inventory section
 
     useEffect(() => {
-        axios.get("details.json").then(({ data }) => {
+        axios.get("http://localhost:5000/inventories").then(({ data }) => {
             setItems(data);
         });
     }, []);
@@ -19,7 +19,7 @@ const Inventory = () => {
                 <Grid>
                     {" "}
                     {items.slice(0, 6).map((item) => (
-                        <Grid.Col md={4} lg={3} key={item.id}>
+                        <Grid.Col md={4} lg={3} key={item._id}>
                             <InventoryItem item={item}></InventoryItem>
                         </Grid.Col>
                     ))}

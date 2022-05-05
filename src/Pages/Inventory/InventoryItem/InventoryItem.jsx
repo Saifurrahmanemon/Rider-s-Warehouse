@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useInventoryItemStyles } from "./InventoryItem.styles";
 
 function InventoryItem({ item }) {
-    const { name, img, description, price, id, supplier } = item;
+    const { name, img, description, price, _id, supplier, quantity } = item;
     const { classes } = useInventoryItemStyles();
     const navigate = useNavigate();
 
@@ -52,7 +52,7 @@ function InventoryItem({ item }) {
                             sx={{ lineHeight: 1 }}
                             mt={4}
                         >
-                            Single
+                            {quantity}/pcs
                         </Text>
                     </div>
 
@@ -61,7 +61,7 @@ function InventoryItem({ item }) {
                         gradient={{ from: "pink", to: "violet", deg: 45 }}
                         radius="xl"
                         style={{ flex: 1 }}
-                        onClick={() => navigate(`/inventory/${id}`)}
+                        onClick={() => navigate(`/inventory/${_id}`)}
                     >
                         Manage Stock
                     </Button>
