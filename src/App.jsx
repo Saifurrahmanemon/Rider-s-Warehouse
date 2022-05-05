@@ -36,7 +36,8 @@ function App() {
             >
                 <NotificationsProvider
                     position="top-right"
-                    zIndex={2077}
+                    zIndex={1000}
+                    containerWidth={300}
                     autoClose={4000}
                 >
                     <AppHeader></AppHeader>

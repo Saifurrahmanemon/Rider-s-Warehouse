@@ -10,12 +10,22 @@ import {
     Text,
     TextInput,
 } from "@mantine/core";
-import { useForm } from "@mantine/hooks";
+import { useForm } from "@mantine/form";
 import React from "react";
+import {
+    useCreateUserWithEmailAndPassword,
+    useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
+import auth from "../../../firebase.init";
+import Loading from "../../Shared/Loading";
 import SocialLogin from "../../Shared/SocialLogin";
 
 export default function Register(props) {
+    // for creating user
+    const [createUserWithEmailAndPassword, user, loading, error] =
+        useCreateUserWithEmailAndPassword(auth);
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const navigate = useNavigate();
 
     // for from validation
@@ -24,14 +34,34 @@ export default function Register(props) {
             email: "",
             name: "",
             password: "",
+            confirmPassword: "",
             terms: true,
         },
 
-        validationRules: {
-            email: (val) => /^\S+@\S+$/.test(val),
-            password: (val) => val.length >= 6,
-        },
+        validate: ({ name, email, password, confirmPassword }) => ({
+            name: name.length < 3 ? "Too short name" : null,
+            email: /^\S+@\S+$/.test(email)
+                ? null
+                : "Please Provide a valid email",
+            password:
+                password.length < 6
+                    ? "Password should include at least 6 characters"
+                    : null,
+            confirmPassword:
+                password !== confirmPassword ? "Passwords did not match" : null,
+        }),
     });
+
+    const handleRegisterOnSubmit = async ({ name, password, email }) => {
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({ displayName: name });
+        console.log("profile updated");
+        navigate("/");
+    };
+
+    if (loading || updating) {
+        return <Loading></Loading>;
+    }
 
     return (
         <Container size={420} my={50}>
@@ -48,7 +78,7 @@ export default function Register(props) {
                     my="lg"
                 />
 
-                <form onSubmit={form.onSubmit(() => {})}>
+                <form onSubmit={form.onSubmit(handleRegisterOnSubmit)}>
                     <Group direction="column" grow>
                         <TextInput
                             required
@@ -61,9 +91,10 @@ export default function Register(props) {
                                     event.currentTarget.value
                                 )
                             }
-                            error={form.errors.email && "Invalid email"}
+                            {...form.getInputProps("email")}
                         />
                         <TextInput
+                            required
                             label="Name"
                             placeholder="Your name"
                             value={form.values.name}
@@ -73,6 +104,7 @@ export default function Register(props) {
                                     event.currentTarget.value
                                 )
                             }
+                            {...form.getInputProps("name")}
                         />
 
                         <PasswordInput
@@ -86,10 +118,20 @@ export default function Register(props) {
                                     event.currentTarget.value
                                 )
                             }
-                            error={
-                                form.errors.password &&
-                                "Password should include at least 6 characters"
+                            {...form.getInputProps("password")}
+                        />
+                        <PasswordInput
+                            required
+                            label="confirmPassword"
+                            placeholder="confirm password"
+                            value={form.values.confirmPassword}
+                            onChange={(event) =>
+                                form.setFieldValue(
+                                    "confirmPassword",
+                                    event.currentTarget.value
+                                )
                             }
+                            {...form.getInputProps("confirmPassword")}
                         />
 
                         <Checkbox
@@ -112,7 +154,7 @@ export default function Register(props) {
                             size="xs"
                             onClick={() => navigate("/login")}
                         >
-                            Don't have an account? Register
+                            Already have an account? Login
                         </Anchor>
                         <Button
                             disabled={!form.values.terms}
