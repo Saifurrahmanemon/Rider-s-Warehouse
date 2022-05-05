@@ -9,6 +9,7 @@ import Footer from "./Pages/Footer/Footer";
 import { AppHeader } from "./Pages/Header/Header";
 import Home from "./Pages/Home/Home";
 import InventoryDetails from "./Pages/Inventory/ManageInventory/InventoryDetails";
+import { ForgotPassword } from "./Pages/Login/ForgotPassword/ForgotPassword";
 import Login from "./Pages/Login/Login/Login";
 import Register from "./Pages/Login/Register/Register";
 import RequireAuth from "./Pages/Login/RequireAuth/RequireAuth";
@@ -44,6 +45,10 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Home></Home>}></Route>
                         <Route path="/login" element={<Login></Login>}></Route>
+                        <Route
+                            path="/login/forgotpassword"
+                            element={<ForgotPassword></ForgotPassword>}
+                        ></Route>
                         <Route
                             path="/register"
                             element={<Register></Register>}

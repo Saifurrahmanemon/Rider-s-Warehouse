@@ -23,9 +23,11 @@ import SocialLogin from "../../Shared/SocialLogin";
 
 export default function Register(props) {
     // for creating user
-    const [createUserWithEmailAndPassword, user, loading, error] =
-        useCreateUserWithEmailAndPassword(auth);
-    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const [createUserWithEmailAndPassword, , loading] =
+        useCreateUserWithEmailAndPassword(auth, {
+            sendEmailVerification: true,
+        });
+    const [updateProfile, updating] = useUpdateProfile(auth);
     const navigate = useNavigate();
 
     // for from validation
@@ -66,8 +68,17 @@ export default function Register(props) {
     return (
         <Container size={420} my={50}>
             <Paper radius="md" p="xl" withBorder>
-                <Text size="lg" weight={500}>
-                    Welcome to Rider's Warehouse, Register with
+                <Text size="md" weight={500}>
+                    Welcome to{" "}
+                    <Text
+                        mx={1}
+                        component="span"
+                        variant="gradient"
+                        gradient={{ from: "pink", to: "violet" }}
+                    >
+                        Rider's Warehouse
+                    </Text>
+                    , Register with
                 </Text>
 
                 <SocialLogin />

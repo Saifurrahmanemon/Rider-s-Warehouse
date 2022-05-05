@@ -98,8 +98,17 @@ function Login(props) {
     return (
         <Container size={420} my={40}>
             <Paper radius="md" p="xl" withBorder>
-                <Text size="lg" weight={500}>
-                    Welcome to Rider's Warehouse, Login with
+                <Text size="md" weight={500}>
+                    Welcome to{" "}
+                    <Text
+                        mx={1}
+                        component="span"
+                        variant="gradient"
+                        gradient={{ from: "pink", to: "violet" }}
+                    >
+                        Rider's Warehouse
+                    </Text>
+                    , Login with
                 </Text>
                 <SocialLogin />
                 <Divider
@@ -113,7 +122,7 @@ function Login(props) {
                         <TextInput
                             required
                             label="Email"
-                            placeholder="hello@mantine.dev"
+                            placeholder="rider@warehouse.dev"
                             value={form.values.email}
                             onChange={(event) =>
                                 form.setFieldValue(
@@ -141,7 +150,16 @@ function Login(props) {
                             }
                         />
                     </Group>
-
+                    <Group position="apart" mt="md">
+                        <Anchor
+                            component="button"
+                            onClick={() => navigate("/login/forgotpassword")}
+                            color="gray"
+                            size="xs"
+                        >
+                            Forgot password? 😕
+                        </Anchor>
+                    </Group>
                     <Group position="apart" mt="xl">
                         <Anchor
                             component="button"
