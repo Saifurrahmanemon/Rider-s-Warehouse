@@ -8,7 +8,8 @@ import Blog from "./Pages/Blog/Blog";
 import Footer from "./Pages/Footer/Footer";
 import { AppHeader } from "./Pages/Header/Header";
 import Home from "./Pages/Home/Home";
-import InventoryDetails from "./Pages/Inventory/ManageInventory/InventoryDetails";
+import InventoryDetails from "./Pages/Inventory/InventoryDetails/InventoryDetails";
+import ManageInventories from "./Pages/Inventory/ManageInventories/ManageInventories";
 import { ForgotPassword } from "./Pages/Login/ForgotPassword/ForgotPassword";
 import Login from "./Pages/Login/Login/Login";
 import Register from "./Pages/Login/Register/Register";
@@ -63,6 +64,14 @@ function App() {
                             element={
                                 <RequireAuth>
                                     <InventoryDetails></InventoryDetails>
+                                </RequireAuth>
+                            }
+                        ></Route>
+                        <Route
+                            path="/inventory/manageInventories"
+                            element={
+                                <RequireAuth>
+                                    <ManageInventories></ManageInventories>
                                 </RequireAuth>
                             }
                         ></Route>

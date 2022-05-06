@@ -1,24 +1,18 @@
 import { Container, Grid } from "@mantine/core";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import useInventories from "../../Hooks/useInventories";
 import SectionTitle from "../Shared/SectionTitle";
 import InventoryItem from "./InventoryItem/InventoryItem";
 const Inventory = () => {
-    const [items, setItems] = useState([]);
-    // show only six items in the home inventory section
+    const [inventories] = useInventories();
 
-    useEffect(() => {
-        axios.get("http://localhost:5000/inventories").then(({ data }) => {
-            setItems(data);
-        });
-    }, []);
     return (
         <div>
             <SectionTitle>Inventories</SectionTitle>
             <Container size="md">
                 <Grid>
                     {" "}
-                    {items.slice(0, 6).map((item) => (
+                    {inventories.slice(0, 6).map((item) => (
                         <Grid.Col md={4} lg={3} key={item._id}>
                             <InventoryItem item={item}></InventoryItem>
                         </Grid.Col>

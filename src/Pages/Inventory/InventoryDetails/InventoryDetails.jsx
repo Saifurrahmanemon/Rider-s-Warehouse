@@ -1,90 +1,28 @@
 import {
+    ActionIcon,
+    Anchor,
     Badge,
+    Box,
     Button,
-    createStyles,
+    Group,
     Image,
+    NumberInput,
     Text,
-    TextInput,
     Title,
 } from "@mantine/core";
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { TruckDelivery } from "tabler-icons-react";
 import useInventoryDetails from "../../../Hooks/useInventoryDetails";
+import { useInventoryDetailsStyles } from "./InventoryDetails.styles";
 
-const useStyles = createStyles((theme) => ({
-    wrapper: {
-        display: "flex",
-        alignItems: "center",
-        margin: theme.spacing.lg,
-        padding: theme.spacing.xl * 2,
-        borderRadius: theme.radius.md,
-        backgroundColor:
-            theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.white,
-        border: `1px solid ${
-            theme.colorScheme === "dark"
-                ? theme.colors.dark[8]
-                : theme.colors.gray[3]
-        }`,
-
-        [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
-            flexDirection: "column-reverse",
-            padding: theme.spacing.xl,
-        },
-    },
-
-    image: {
-        maxWidth: "40%",
-
-        [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
-            maxWidth: "100%",
-        },
-    },
-
-    body: {
-        paddingRight: theme.spacing.xl * 4,
-
-        [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
-            paddingRight: 0,
-            marginTop: theme.spacing.xl,
-        },
-    },
-
-    title: {
-        color: theme.colorScheme === "dark" ? theme.white : theme.black,
-        fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-        lineHeight: 1,
-        marginBottom: theme.spacing.md,
-    },
-
-    controls: {
-        display: "flex",
-        marginTop: theme.spacing.xl,
-    },
-
-    inputWrapper: {
-        width: "50%",
-        flex: "1",
-    },
-
-    input: {
-        borderTopRightRadius: 0,
-        borderBottomRightRadius: 0,
-        borderRight: 0,
-    },
-
-    control: {
-        borderTopLeftRadius: 0,
-        borderBottomLeftRadius: 0,
-    },
-    text: {
-        color: theme.colorScheme === "dark" ? "white" : "black",
-    },
-}));
 const InventoryDetails = () => {
+    const navigate = useNavigate();
     const { inventoryId } = useParams();
     const [inventory] = useInventoryDetails(inventoryId);
-    const { classes } = useStyles();
+    const { classes } = useInventoryDetailsStyles();
+    const [value, setValue] = useState(0);
+    const handlers = useRef();
     const { img, price, quantity, description, name, supplier } = inventory;
     return (
         <div className={classes.wrapper}>
@@ -121,14 +59,44 @@ const InventoryDetails = () => {
                 </Text>
 
                 <div className={classes.controls}>
-                    <TextInput
-                        placeholder="Your email"
-                        classNames={{
-                            input: classes.input,
-                            root: classes.inputWrapper,
-                        }}
-                    />
-                    <Button className={classes.control}>
+                    <Group spacing={5} my={10}>
+                        <ActionIcon
+                            size={22}
+                            variant="default"
+                            onClick={() => handlers.current.decrement()}
+                        >
+                            –
+                        </ActionIcon>
+
+                        <NumberInput
+                            hideControls
+                            value={value}
+                            onChange={(val) => setValue(val)}
+                            handlersRef={handlers}
+                            max={10}
+                            min={0}
+                            step={1}
+                            styles={{
+                                input: { width: 34, textAlign: "center" },
+                            }}
+                        />
+
+                        <ActionIcon
+                            size={22}
+                            variant="default"
+                            onClick={() => handlers.current.increment()}
+                        >
+                            +
+                        </ActionIcon>
+                    </Group>
+                    <Button
+                        variant="subtle"
+                        color="grape"
+                        size="xs"
+                        mx="md"
+                        compact
+                        uppercase
+                    >
                         restock the items
                     </Button>
                 </div>
@@ -146,6 +114,18 @@ const InventoryDetails = () => {
                 >
                     Delivered
                 </Button>
+
+                <Box>
+                    <Anchor
+                        align="center"
+                        inline="false"
+                        color="gray"
+                        component={Link}
+                        to="/inventory/manageInventories"
+                    >
+                        Manage inventories
+                    </Anchor>
+                </Box>
             </div>
             <Image src={img} withPlaceholder className={classes.image} />
         </div>
