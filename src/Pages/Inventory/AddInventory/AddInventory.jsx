@@ -13,12 +13,16 @@ import { useForm } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
 import axios from "axios";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../firebase.init";
 import { dropzoneChildren } from "../../../utils/DropZoneConfig";
 import { useAddInventoryStyles } from "./AddInventory.styles";
 //TODO: img left
 export default function AddInventory() {
     const { classes } = useAddInventoryStyles();
     const theme = useMantineTheme();
+    const [user] = useAuthState(auth);
+    let email = user?.email;
 
     const form = useForm({
         initialValues: {
@@ -27,9 +31,12 @@ export default function AddInventory() {
             price: 1000,
             quantity: 0,
             description: "",
+            email: email,
         },
     });
     const handleOnSubmit = async (values) => {
+        console.log(values);
+
         const { data } = await axios.post(
             "http://localhost:5000/addInventory",
             values
@@ -42,7 +49,6 @@ export default function AddInventory() {
                 message: "uploaded successfully 😀",
             });
         }
-        console.log(values);
     };
 
     return (

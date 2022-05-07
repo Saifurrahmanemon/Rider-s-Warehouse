@@ -12,25 +12,33 @@ import {
 } from "@mantine/core";
 import axios from "axios";
 import React, { useRef, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { TruckDelivery } from "tabler-icons-react";
 import useInventoryDetails from "../../../Hooks/useInventoryDetails";
 import { useInventoryDetailsStyles } from "./InventoryDetails.styles";
 
 const InventoryDetails = () => {
-    const navigate = useNavigate();
     const { inventoryId } = useParams();
     const [inventory] = useInventoryDetails(inventoryId);
     const { classes } = useInventoryDetailsStyles();
     const [quantityValue, setQuantityValue] = useState(0);
     const handlers = useRef();
+    const url = `http://localhost:5000/inventories/${inventoryId}`;
     const { img, price, quantity, description, name, supplier } = inventory;
+    let updatedQuantityValue;
 
+    //handle quantity update
     const handleQuantityUpdate = async () => {
-        const url = `http://localhost:5000/inventories/${inventoryId}`;
-
-        const { data } = await axios.put(url, { quantityValue });
+        updatedQuantityValue = quantityValue;
+        if (updatedQuantityValue === 0) return;
+        const { data } = await axios.put(url, { updatedQuantityValue });
+        setQuantityValue(0);
         console.log(data);
+    };
+
+    const handleDeliveredInventory = async () => {
+        updatedQuantityValue = -1;
+        const { data } = await axios.put(url, { updatedQuantityValue });
     };
     return (
         <div className={classes.wrapper}>
@@ -121,6 +129,8 @@ const InventoryDetails = () => {
                     variant="outline"
                     color="violet"
                     my={20}
+                    disabled={quantity <= 0}
+                    onClick={handleDeliveredInventory}
                 >
                     Delivered
                 </Button>
