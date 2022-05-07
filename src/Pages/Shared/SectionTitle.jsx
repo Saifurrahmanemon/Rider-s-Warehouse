@@ -7,7 +7,7 @@ const SectionTitle = ({ children }) => {
     return (
         <Text
             className={classes.logo}
-            component="h1"
+            component="h2"
             align="center"
             inherit
             variant="gradient"

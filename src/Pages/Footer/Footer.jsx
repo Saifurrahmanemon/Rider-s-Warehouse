@@ -1,4 +1,4 @@
-import { Anchor, Container, Group } from "@mantine/core";
+import { Affix, Anchor, Container, Group } from "@mantine/core";
 import React from "react";
 import { useFooterStyles } from "./Footer.styles";
 
@@ -36,11 +36,13 @@ export default function Footer() {
     ));
 
     return (
-        <div className={classes.footer}>
-            <Container className={classes.inner}>
-                <h1>logo</h1>
-                <Group className={classes.links}>{items}</Group>
-            </Container>
-        </div>
+
+            <div className={classes.footer}>
+                <Container className={classes.inner}>
+                    <h3>logo</h3>
+                    <Group className={classes.links}>{items}</Group>
+                </Container>
+            </div>
+   
     );
 }

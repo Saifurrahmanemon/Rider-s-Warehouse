@@ -1,9 +1,11 @@
-import { Container, Grid } from "@mantine/core";
+import { Button, Center, Container, Grid } from "@mantine/core";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import useInventories from "../../Hooks/useInventories";
 import SectionTitle from "../Shared/SectionTitle";
 import InventoryItem from "./InventoryItem/InventoryItem";
 const Inventory = () => {
+    const navigate = useNavigate();
     const [inventories] = useInventories();
 
     return (
@@ -18,6 +20,17 @@ const Inventory = () => {
                         </Grid.Col>
                     ))}
                 </Grid>
+                <Center>
+                    <Button
+                        onClick={() => navigate("/inventory/manageInventories")}
+                        variant="default"
+                        size="sm"
+                        mt={15}
+                        px={40}
+                    >
+                        Manage Inventories
+                    </Button>
+                </Center>
             </Container>
         </div>
     );

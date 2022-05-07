@@ -7,7 +7,9 @@ import About from "./Pages/About/About";
 import Blog from "./Pages/Blog/Blog";
 import Footer from "./Pages/Footer/Footer";
 import { AppHeader } from "./Pages/Header/Header";
+import CustomAffix from "./Pages/Home/Affix/Affix";
 import Home from "./Pages/Home/Home";
+import AddInventory from "./Pages/Inventory/AddInventory/AddInventory";
 import InventoryDetails from "./Pages/Inventory/InventoryDetails/InventoryDetails";
 import ManageInventories from "./Pages/Inventory/ManageInventories/ManageInventories";
 import { ForgotPassword } from "./Pages/Login/ForgotPassword/ForgotPassword";
@@ -75,8 +77,17 @@ function App() {
                                 </RequireAuth>
                             }
                         ></Route>
+                        <Route
+                            path="/inventory/addInventory"
+                            element={
+                                <RequireAuth>
+                                    <AddInventory></AddInventory>
+                                </RequireAuth>
+                            }
+                        ></Route>
                     </Routes>
                     <Footer></Footer>
+                    <CustomAffix></CustomAffix>
                 </NotificationsProvider>
             </MantineProvider>
         </ColorSchemeProvider>

@@ -21,7 +21,7 @@ const InventoryDetails = () => {
     const { inventoryId } = useParams();
     const [inventory] = useInventoryDetails(inventoryId);
     const { classes } = useInventoryDetailsStyles();
-    const [value, setValue] = useState(0);
+    const [quantityValue, setQuantityValue] = useState(0);
     const handlers = useRef();
     const { img, price, quantity, description, name, supplier } = inventory;
     return (
@@ -70,8 +70,8 @@ const InventoryDetails = () => {
 
                         <NumberInput
                             hideControls
-                            value={value}
-                            onChange={(val) => setValue(val)}
+                            value={quantityValue}
+                            onChange={(val) => setQuantityValue(val)}
                             handlersRef={handlers}
                             max={10}
                             min={0}

@@ -3,6 +3,7 @@ import {
     Anchor,
     Avatar,
     Badge,
+    Button,
     Container,
     Group,
     ScrollArea,
@@ -11,6 +12,7 @@ import {
     useMantineTheme,
 } from "@mantine/core";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Pencil, Trash } from "tabler-icons-react";
 import useInventories from "../../../Hooks/useInventories";
 
@@ -26,6 +28,7 @@ const itemStatus = {
 };
 
 export default function ManageInventories() {
+    const navigate = useNavigate();
     const [inventories] = useInventories();
 
     const theme = useMantineTheme();
@@ -87,6 +90,15 @@ export default function ManageInventories() {
 
     return (
         <Container>
+            <Button
+                onClick={() => navigate("/inventory/addInventory")}
+                my={10}
+                variant="light"
+                color="violet"
+                radius="md"
+            >
+                Add item
+            </Button>
             <ScrollArea>
                 <Table
                     sx={{ minWidth: 800 }}

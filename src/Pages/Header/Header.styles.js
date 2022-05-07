@@ -94,8 +94,6 @@ export const useAppHeaderStyles = createStyles((theme) => ({
         marginRight: 10,
         paddingRight: 10,
         fontSize: theme.fontSizes.xl * 1.8,
-        color: theme.colors.blue[8],
-
         [theme.fn.smallerThan("sm")]: {
             fontSize: theme.fontSizes.xl * 1.3,
         },

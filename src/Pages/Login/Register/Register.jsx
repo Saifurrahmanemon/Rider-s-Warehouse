@@ -5,9 +5,9 @@ import {
     Container,
     Divider,
     Group,
+    Highlight,
     Paper,
     PasswordInput,
-    Text,
     TextInput,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
@@ -68,18 +68,23 @@ export default function Register(props) {
     return (
         <Container size={420} my={50}>
             <Paper radius="md" p="xl" withBorder>
-                <Text size="md" weight={500}>
-                    Welcome to{" "}
-                    <Text
-                        mx={1}
-                        component="span"
-                        variant="gradient"
-                        gradient={{ from: "pink", to: "violet" }}
-                    >
-                        Rider's Warehouse
-                    </Text>
-                    , Register with
-                </Text>
+                <Highlight
+                    align="center"
+                    highlight={["Rider's Warehouse"]}
+                    weight={500}
+                    highlightStyles={(theme) => ({
+                        backgroundImage: theme.fn.linearGradient(
+                            45,
+                            theme.colors.pink[9],
+                            theme.colors.violet[9]
+                        ),
+                        fontWeight: 500,
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                    })}
+                >
+                    Welcome to Rider's Warehouse , Register with
+                </Highlight>
 
                 <SocialLogin />
 
