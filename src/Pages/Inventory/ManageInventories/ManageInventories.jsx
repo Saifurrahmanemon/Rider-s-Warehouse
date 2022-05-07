@@ -45,7 +45,7 @@ export default function ManageInventories() {
 
             <td>
                 <Badge
-                    color={companyColors[item.supplier.toLowerCase()]}
+                    color={companyColors[item?.supplier?.toLowerCase()]}
                     variant={theme.colorScheme === "dark" ? "light" : "outline"}
                 >
                     {item.supplier}
@@ -53,7 +53,6 @@ export default function ManageInventories() {
             </td>
             <td>
                 <Badge
-                    toLowerCase
                     size="sm"
                     color="green"
                     variant={theme.colorScheme === "dark" ? "light" : "outline"}
