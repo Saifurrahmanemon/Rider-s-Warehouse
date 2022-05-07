@@ -6,8 +6,8 @@ const useInventoryDetails = (inventoryId) => {
     const url = `http://localhost:5000/inventories/${inventoryId}`;
     useEffect(() => {
         axios.get(url).then(({ data }) => setInventory(data));
-    }, [url]);
-    return [inventory];
+    }, [url, inventory]);
+    return [inventory, setInventory];
 };
 
 export default useInventoryDetails;

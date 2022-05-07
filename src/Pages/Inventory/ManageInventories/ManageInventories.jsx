@@ -11,6 +11,7 @@ import {
     Text,
     useMantineTheme,
 } from "@mantine/core";
+import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Pencil, Trash } from "tabler-icons-react";
@@ -29,9 +30,23 @@ const itemStatus = {
 
 export default function ManageInventories() {
     const navigate = useNavigate();
-    const [inventories] = useInventories();
+    const [inventories, setInventories] = useInventories();
 
     const theme = useMantineTheme();
+
+    const handleDeleteItem = async (id) => {
+        const url = `http://localhost:5000/inventories/${id}`;
+        const proceed = window.confirm("Are you sure?");
+        if (proceed) {
+            const { data } = await axios.delete(url);
+            console.log(data);
+            const remainingInventories = inventories.filter(
+                (inventory) => inventory._id !== id
+            );
+            setInventories(remainingInventories);
+        }
+    };
+
     const rows = inventories.map((item) => (
         <tr key={item._id}>
             <td>
@@ -79,7 +94,10 @@ export default function ManageInventories() {
                     <ActionIcon>
                         <Pencil size={16} />
                     </ActionIcon>
-                    <ActionIcon color="red">
+                    <ActionIcon
+                        onClick={() => handleDeleteItem(item._id)}
+                        color="red"
+                    >
                         <Trash size={16} />
                     </ActionIcon>
                 </Group>

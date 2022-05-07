@@ -10,6 +10,7 @@ import {
     Text,
     Title,
 } from "@mantine/core";
+import axios from "axios";
 import React, { useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { TruckDelivery } from "tabler-icons-react";
@@ -24,6 +25,13 @@ const InventoryDetails = () => {
     const [quantityValue, setQuantityValue] = useState(0);
     const handlers = useRef();
     const { img, price, quantity, description, name, supplier } = inventory;
+
+    const handleQuantityUpdate = async () => {
+        const url = `http://localhost:5000/inventories/${inventoryId}`;
+
+        const { data } = await axios.put(url, { quantityValue });
+        console.log(data);
+    };
     return (
         <div className={classes.wrapper}>
             <div className={classes.body}>
@@ -90,11 +98,13 @@ const InventoryDetails = () => {
                         </ActionIcon>
                     </Group>
                     <Button
+                        onClick={handleQuantityUpdate}
                         variant="subtle"
                         color="grape"
                         size="xs"
                         mx="md"
                         compact
+                        disabled={quantity >= 50}
                         uppercase
                     >
                         restock the items

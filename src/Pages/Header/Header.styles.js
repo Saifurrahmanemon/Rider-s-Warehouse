@@ -48,8 +48,8 @@ export const useAppHeaderStyles = createStyles((theme) => ({
     link: {
         display: "block",
         lineHeight: 1,
-        padding: "8px 12px",
-        borderRadius: theme.radius.sm,
+        padding: "7px 11px",
+        borderRadius: theme.radius.md,
         textDecoration: "none",
         color:
             theme.colorScheme === "dark"
@@ -69,6 +69,9 @@ export const useAppHeaderStyles = createStyles((theme) => ({
             borderRadius: 0,
             padding: theme.spacing.md,
         },
+        [theme.fn.smallerThan("850")]: {
+            fontSize: theme.fontSizes.xs,
+        },
     },
 
     linkActive: {
@@ -81,8 +84,6 @@ export const useAppHeaderStyles = createStyles((theme) => ({
         },
     },
     social: {
-        width: 260,
-
         [theme.fn.smallerThan("sm")]: {
             width: "auto",
             marginRight: "auto",
@@ -91,11 +92,14 @@ export const useAppHeaderStyles = createStyles((theme) => ({
     logo: {
         fontFamily: "Caveat",
         fontWeight: 800,
-        marginRight: 10,
+
         paddingRight: 10,
         fontSize: theme.fontSizes.xl * 1.8,
         [theme.fn.smallerThan("sm")]: {
             fontSize: theme.fontSizes.xl * 1.3,
+        },
+        [theme.fn.smallerThan("850")]: {
+            fontSize: theme.fontSizes.xl * 1.5,
         },
     },
 }));

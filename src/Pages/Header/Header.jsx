@@ -10,22 +10,18 @@ import {
 } from "@mantine/core";
 import { useBooleanToggle } from "@mantine/hooks";
 import { signOut } from "firebase/auth";
-import React, { useState } from "react";
+import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
-import {
-    BrandInstagram,
-    BrandTwitter,
-    BrandYoutube,
-    Logout,
-} from "tabler-icons-react";
+import { useNavigate } from "react-router-dom";
+import { Login, Logout } from "tabler-icons-react";
 import auth from "../../firebase.init";
+import CustomLink from "../Shared/CustomLink";
 import ThemeToggleButton from "../Shared/ThemeToggleButton";
 import { HEADER_HEIGHT, useAppHeaderStyles } from "./Header.styles";
 
 const links = [
     {
-        link: "/",
+        link: "/home",
         label: "Home",
     },
     {
@@ -33,83 +29,91 @@ const links = [
         label: "About",
     },
     {
-        link: "login",
-        label: "Login",
-    },
-    {
         link: "blog",
         label: "Blog",
+    },
+];
+const linkForUsers = [
+    {
+        link: "/inventory/manageInventories",
+        label: "Manage Inventories",
+    },
+    {
+        link: "/inventory/addInventory",
+        label: "Add Items",
+    },
+    {
+        link: "/inventory/myInventories",
+        label: "My Items",
     },
 ];
 
 export function AppHeader() {
     const [user] = useAuthState(auth);
     const [opened, toggleOpened] = useBooleanToggle(false);
-    const [active, setActive] = useState(links[0].link);
-    const { classes, cx } = useAppHeaderStyles();
+    const { classes } = useAppHeaderStyles();
+    const navigate = useNavigate();
 
     const handleSignOut = () => {
         signOut(auth);
     };
 
-    // for navigating to different pages
+    // fixed navigation  links
     const items = links.map((link) => (
-        <Link
-            key={link.link}
-            to={link.link}
-            className={cx(classes.link, {
-                [classes.linkActive]: active === link.link,
-            })}
-            onClick={() => {
-                setActive(link.link);
-                toggleOpened(false);
-            }}
-        >
+        <CustomLink key={link.link} className={classes.link} to={link.link}>
             {link.label}
-        </Link>
+        </CustomLink>
+    ));
+    // changeable
+    const itemsForUsers = linkForUsers.map((link) => (
+        <CustomLink key={link.link} className={classes.link} to={link.link}>
+            {link.label}
+        </CustomLink>
     ));
 
     return (
         <Header height={HEADER_HEIGHT} className={classes.root}>
             <Container className={classes.header}>
-                <Group spacing={5} className={classes.links}>
-                    {items}
-                </Group>
                 <Text
                     className={classes.logo}
                     component="h1"
+                    onClick={() => navigate("/")}
                     inherit
                     variant="gradient"
                     gradient={{ from: "pink", to: "violet" }}
                 >
                     Rider's Warehouse
                 </Text>
+                <Group spacing={1} className={classes.links}>
+                    {items}
+                    {user && itemsForUsers}
+                </Group>
                 <Group
                     spacing={0}
                     className={classes.social}
                     position="right"
                     noWrap
                 >
-                    <ActionIcon size="lg">
-                        <BrandTwitter size={18} />
-                    </ActionIcon>
-                    <ActionIcon size="lg">
-                        <BrandYoutube size={18} />
-                    </ActionIcon>
-                    <ActionIcon size="lg">
-                        <BrandInstagram size={18} />
-                    </ActionIcon>
-
-                    {user && (
+                    {!user ? (
+                        <ActionIcon mr="xs" size="lg">
+                            <Login
+                                onClick={() => navigate("/login")}
+                                size={20}
+                                strokeWidth={2}
+                                color={"purple"}
+                            />
+                        </ActionIcon>
+                    ) : (
                         <ActionIcon mr="xs" size="lg">
                             <Logout
                                 onClick={handleSignOut}
-                                size={18}
-                                strokeWidth={1.5}
+                                size={20}
+                                strokeWidth={2}
                                 color={"red"}
                             />
                         </ActionIcon>
                     )}
+
                     <ThemeToggleButton />
                 </Group>
 

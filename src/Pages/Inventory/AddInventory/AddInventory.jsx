@@ -15,7 +15,7 @@ import axios from "axios";
 import React from "react";
 import { dropzoneChildren } from "../../../utils/DropZoneConfig";
 import { useAddInventoryStyles } from "./AddInventory.styles";
-
+//TODO: img left
 export default function AddInventory() {
     const { classes } = useAddInventoryStyles();
     const theme = useMantineTheme();
