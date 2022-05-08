@@ -59,11 +59,15 @@ export function ForgotPassword() {
             });
         }
         if (!email) {
-            console.log("Please enter your email");
+            showNotification({
+                color: "grape",
+                title: "Yey!",
+                message: "Please enter your email",
+            });
         }
     };
 
-    if(sending) {
+    if (sending) {
         return <Loading></Loading>;
     }
 

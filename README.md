@@ -11,6 +11,9 @@
 
 
 
+### An attempt to build full stack warehouse management app. Rider's Warehouse is a full stack web application that allows users to manage their inventory. It uses React for frontend and Node.js for backend. It also uses MongoDB for database.
+----
+
 <br/>
 
 
@@ -40,14 +43,6 @@
 ----
 - 🧪 Write tests
 - 🔍 Add More features
-
-
-
-### Run in your local
------
-- ``````
-- ```npm install``` (navigate inside directory first)
-- ```npm run dev```
 
 ---
 

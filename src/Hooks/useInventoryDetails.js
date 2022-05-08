@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 const useInventoryDetails = (inventoryId) => {
     const [inventory, setInventory] = useState({});
-    const url = `http://localhost:5000/inventories/${inventoryId}`;
+    const url = `https://radiant-anchorage-61997.herokuapp.com/inventories/${inventoryId}`;
     useEffect(() => {
         axios.get(url).then(({ data }) => setInventory(data));
     }, [url, inventory]);

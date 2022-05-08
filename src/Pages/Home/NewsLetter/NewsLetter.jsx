@@ -4,6 +4,7 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import img from "../../../Assets/Logos/newsLatter.svg";
 import auth from "../../../firebase.init";
+import SectionTitle from "../../Shared/SectionTitle";
 import { useNewsLetterStyles } from "./NewsLetter.styles";
 
 export default function NewsLetterBanner() {
@@ -20,6 +21,7 @@ export default function NewsLetterBanner() {
     };
     return (
         <Box my={50}>
+            <SectionTitle>NewsLetter</SectionTitle>
             <div className={classes.wrapper}>
                 <div className={classes.body}>
                     <Title className={classes.title}>

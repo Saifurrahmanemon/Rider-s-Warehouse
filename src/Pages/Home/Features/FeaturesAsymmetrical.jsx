@@ -27,9 +27,10 @@ export function FeaturesAsymmetrical() {
     ));
 
     return (
-        <Box mt={30} mb={30}>
+        <Box mt={30} mb={80}>
             <SectionTitle>Features</SectionTitle>
             <SimpleGrid
+                mt={50}
                 cols={3}
                 breakpoints={[{ maxWidth: "sm", cols: 1 }]}
                 spacing={50}

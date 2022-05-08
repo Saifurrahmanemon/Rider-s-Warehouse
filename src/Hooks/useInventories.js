@@ -5,9 +5,11 @@ const useInventories = () => {
     const [inventories, setInventories] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:5000/inventories").then(({ data }) => {
-            setInventories(data);
-        });
+        axios
+            .get("https://radiant-anchorage-61997.herokuapp.com/inventories")
+            .then(({ data }) => {
+                setInventories(data);
+            });
     }, []);
     return [inventories, setInventories];
 };

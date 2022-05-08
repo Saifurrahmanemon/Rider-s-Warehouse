@@ -48,7 +48,7 @@ const linkForUsers = [
     },
 ];
 
-export function AppHeader() {
+export default function AppHeader() {
     const [user] = useAuthState(auth);
     const [opened, toggleOpened] = useBooleanToggle(false);
     const { classes } = useAppHeaderStyles();

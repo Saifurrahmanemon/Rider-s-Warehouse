@@ -23,6 +23,7 @@ const companyColors = {
     suzuki: "pink",
 };
 
+//for future use
 // const itemStatus = {
 //     available: "green",
 //     notAvailable: "red",
@@ -35,7 +36,7 @@ export default function ManageInventories() {
     const theme = useMantineTheme();
 
     const handleDeleteItem = async (id) => {
-        const url = `http://localhost:5000/inventories/${id}`;
+        const url = `https://radiant-anchorage-61997.herokuapp.com/inventories/${id}`;
         const proceed = window.confirm("Are you sure?");
         if (proceed) {
             const { data } = await axios.delete(url);
@@ -47,60 +48,66 @@ export default function ManageInventories() {
         }
     };
 
-    const rows = inventories.map((item) => (
-        <tr key={item._id}>
-            <td>
-                <Group spacing="sm">
-                    <Avatar size={30} src={item.img} />
-                    <Text size="sm" weight={500}>
-                        {item.name}
-                    </Text>
-                </Group>
-            </td>
+    const rows = inventories.map(
+        ({ _id, img, name, supplier, quantity, price }) => (
+            <tr key={_id}>
+                <td>
+                    <Group spacing="sm">
+                        <Avatar size={30} src={img} />
+                        <Text size="sm" weight={500}>
+                            {name}
+                        </Text>
+                    </Group>
+                </td>
 
-            <td>
-                <Badge
-                    color={companyColors[item?.supplier?.toLowerCase()]}
-                    variant={theme.colorScheme === "dark" ? "light" : "outline"}
-                >
-                    {item.supplier}
-                </Badge>
-            </td>
-            <td>
-                <Badge
-                    size="sm"
-                    color="green"
-                    variant={theme.colorScheme === "dark" ? "light" : "outline"}
-                >
-                    Available
-                </Badge>
-            </td>
-            <td>
-                <Anchor
-                    size="sm"
-                    href="#"
-                    onClick={(event) => event.preventDefault()}
-                >
-                    {item.quantity}
-                </Anchor>
-            </td>
-            <td>
-                <Text size="sm" weight={500} color="gray">
-                    ${item.price}
-                </Text>
-            </td>
-            <td>
-                <Group spacing={0} position="right">
-                    <ActionIcon
-                        onClick={() => handleDeleteItem(item._id)}
-                        color="red"
+                <td>
+                    <Badge
+                        color={companyColors[supplier?.toLowerCase()]}
+                        variant={
+                            theme.colorScheme === "dark" ? "light" : "outline"
+                        }
                     >
-                        <Trash size={16} />
-                    </ActionIcon>
-                </Group>
-            </td>
-        </tr>
-    ));
+                        {supplier}
+                    </Badge>
+                </td>
+                <td>
+                    <Badge
+                        size="sm"
+                        color="green"
+                        variant={
+                            theme.colorScheme === "dark" ? "light" : "outline"
+                        }
+                    >
+                        Available
+                    </Badge>
+                </td>
+                <td>
+                    <Anchor
+                        size="sm"
+                        href="#"
+                        onClick={(event) => event.preventDefault()}
+                    >
+                        {quantity}
+                    </Anchor>
+                </td>
+                <td>
+                    <Text size="sm" weight={500} color="gray">
+                        ${price}
+                    </Text>
+                </td>
+                <td>
+                    <Group spacing={0} position="right">
+                        <ActionIcon
+                            onClick={() => handleDeleteItem(_id)}
+                            color="red"
+                        >
+                            <Trash size={16} />
+                        </ActionIcon>
+                    </Group>
+                </td>
+            </tr>
+        )
+    );
 
     return (
         <Container>

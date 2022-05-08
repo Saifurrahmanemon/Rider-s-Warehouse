@@ -28,12 +28,11 @@ const MyInventories = () => {
     useEffect(() => {
         const getInventories = async () => {
             const email = user?.email;
-            const url = `http://localhost:5000/myItems?email=${email}`;
+            const url = `https://radiant-anchorage-61997.herokuapp.com/myItems?email=${email}`;
             try {
                 const { data } = await axiosPrivate.get(url);
                 setMyInventories(data);
             } catch (err) {
-                console.log(err.message);
                 if (err.response.status === 401 || 403) {
                     signOut(auth);
                     navigate("/login");
@@ -44,11 +43,11 @@ const MyInventories = () => {
     }, [navigate, user]);
 
     const handleDeleteItem = async (id) => {
-        const url = `http://localhost:5000/inventories/${id}`;
+        const url = `https://radiant-anchorage-61997.herokuapp.com/inventories/${id}`;
         const proceed = window.confirm("Are you sure?");
         if (proceed) {
-            const { data } = await axios.delete(url);
-            console.log(data);
+            await axios.delete(url);
+
             const remainingInventories = myInventories.filter(
                 (inventory) => inventory._id !== id
             );

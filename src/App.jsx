@@ -6,7 +6,7 @@ import "./App.css";
 import Blog from "./Pages/Blog/Blog";
 import Contact from "./Pages/Contact/Contact";
 import Footer from "./Pages/Footer/Footer";
-import { AppHeader } from "./Pages/Header/Header";
+import AppHeader from "./Pages/Header/Header";
 import CustomAffix from "./Pages/Home/Affix/Affix";
 import Home from "./Pages/Home/Home";
 import AddInventory from "./Pages/Inventory/AddInventory/AddInventory";

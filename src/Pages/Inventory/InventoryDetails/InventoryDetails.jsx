@@ -23,22 +23,21 @@ const InventoryDetails = () => {
     const { classes } = useInventoryDetailsStyles();
     const [quantityValue, setQuantityValue] = useState(0);
     const handlers = useRef();
-    const url = `http://localhost:5000/inventories/${inventoryId}`;
+    const url = `https://radiant-anchorage-61997.herokuapp.com/inventories/${inventoryId}`;
     const { img, price, quantity, description, name, supplier } = inventory;
     let updatedQuantityValue;
 
     //handle quantity update
     const handleQuantityUpdate = async () => {
         updatedQuantityValue = quantityValue;
-        if (updatedQuantityValue === 0) return;
-        const { data } = await axios.put(url, { updatedQuantityValue });
+        if (updatedQuantityValue <= 0) return;
+        await axios.put(url, { updatedQuantityValue });
         setQuantityValue(0);
-        console.log(data);
     };
 
     const handleDeliveredInventory = async () => {
         updatedQuantityValue = -1;
-        const { data } = await axios.put(url, { updatedQuantityValue });
+        await axios.put(url, { updatedQuantityValue });
     };
     return (
         <div className={classes.wrapper}>

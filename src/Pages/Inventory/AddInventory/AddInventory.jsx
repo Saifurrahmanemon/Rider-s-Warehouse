@@ -6,21 +6,21 @@ import {
     Select,
     Text,
     TextInput,
-    useMantineTheme,
 } from "@mantine/core";
-import { Dropzone, IMAGE_MIME_TYPE } from "@mantine/dropzone";
 import { useForm } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
 import axios from "axios";
 import React from "react";
+import FileBase64 from "react-file-base64";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
-import { dropzoneChildren } from "../../../utils/DropZoneConfig";
 import { useAddInventoryStyles } from "./AddInventory.styles";
-//TODO: img left
+
+//? 🚧 dropzone is under construction 🚧
+//* kept it for future reference
 export default function AddInventory() {
     const { classes } = useAddInventoryStyles();
-    const theme = useMantineTheme();
+    // const theme = useMantineTheme();
     const [user] = useAuthState(auth);
     let email = user?.email;
 
@@ -32,11 +32,12 @@ export default function AddInventory() {
             quantity: 0,
             description: "",
             email: email,
+            img: "",
         },
     });
     const handleOnSubmit = async (values) => {
         const { data } = await axios.post(
-            "http://localhost:5000/addInventory",
+            "https://radiant-anchorage-61997.herokuapp.com/addInventory",
             values
         );
 
@@ -106,8 +107,8 @@ export default function AddInventory() {
                     required
                     {...form.getInputProps("description")}
                 />
-
-                <Dropzone
+                {/*! dropzone under construction  */}
+                {/* <Dropzone
                     onDrop={(files) => {
                         console.log(files);
                     }}
@@ -115,9 +116,19 @@ export default function AddInventory() {
                     maxSize={1024 ** 2}
                     accept={IMAGE_MIME_TYPE}
                     my={20}
+                    disabled
+                    label="under construction"
                 >
                     {(status) => dropzoneChildren(status, theme)}
-                </Dropzone>
+                </Dropzone> */}
+                <Group my={20}>
+                    <FileBase64
+                        multiple={false}
+                        onDone={({ base64 }) =>
+                            form.setFieldValue("img", base64)
+                        }
+                    />
+                </Group>
                 <Group position="center" mt="md">
                     <Button
                         type="submit"
