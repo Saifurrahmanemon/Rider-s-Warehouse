@@ -1,5 +1,5 @@
 import { Group, Text } from "@mantine/core";
-import { Upload, Photo, X } from 'tabler-icons-react';
+import { Photo, Upload, X } from "tabler-icons-react";
 function getIconColor(status, theme) {
     return status.accepted
         ? theme.colors[theme.primaryColor][theme.colorScheme === "dark" ? 4 : 6]

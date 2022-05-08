@@ -23,10 +23,9 @@ import useToken from "../../../Hooks/useToken";
 import Loading from "../../Shared/Loading";
 import SocialLogin from "../../Shared/SocialLogin";
 
-export default function Register(props) {
+export default function Register() {
     // for creating user
-
-    const [createUserWithEmailAndPassword, user, loading, error] =
+    const [createUserWithEmailAndPassword, user, loading] =
         useCreateUserWithEmailAndPassword(auth, {
             sendEmailVerification: true,
         });
@@ -47,7 +46,7 @@ export default function Register(props) {
         }
     }, [from, navigate, token]);
 
-    // for from validation
+    // for form validation
     const form = useForm({
         initialValues: {
             email: "",

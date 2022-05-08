@@ -25,11 +25,11 @@ const links = [
         label: "Home",
     },
     {
-        link: "about",
-        label: "About",
+        link: "/contact",
+        label: "Contact",
     },
     {
-        link: "blog",
+        link: "/blog",
         label: "Blog",
     },
 ];

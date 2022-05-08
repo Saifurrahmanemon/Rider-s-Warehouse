@@ -1,34 +1,41 @@
-import { Anchor, Container, Group } from "@mantine/core";
+import { ActionIcon, Anchor, Group, Text } from "@mantine/core";
 import React from "react";
+import { Link } from "react-router-dom";
+import { BrandInstagram, BrandTwitter, BrandYoutube } from "tabler-icons-react";
+import img from "../../Assets/Logos/check.png";
 import { useFooterStyles } from "./Footer.styles";
-
-//TODO: make the links working
 const links = [
     {
-        link: "#",
+        link: "/contact",
         label: "Contact",
     },
     {
-        link: "#",
-        label: "Privacy",
+        link: "/home",
+        label: "Home",
     },
     {
-        link: "#",
+        link: "/blog",
         label: "Blog",
     },
     {
-        link: "#",
+        link: "/home",
+        label: "Store",
+    },
+    {
+        link: "/home",
         label: "Careers",
     },
 ];
+
 export default function Footer() {
     const { classes } = useFooterStyles();
     const items = links.map((link) => (
         <Anchor
+            component={Link}
             color="dimmed"
             key={link.label}
-            href={link.link}
-            onClick={(event) => event.preventDefault()}
+            to={link.link}
+            sx={{ lineHeight: 1 }}
             size="sm"
         >
             {link.label}
@@ -37,10 +44,43 @@ export default function Footer() {
 
     return (
         <div className={classes.footer}>
-            <Container className={classes.inner}>
-                <h3>logo</h3>
+            <div className={classes.inner}>
+                <Group spacing={0} noWrap position="left">
+                    <img src={img} alt="logo" />{" "}
+                    <Text
+                        variant="gradient"
+                        gradient={{ from: "pink", to: "violet" }}
+                        weight={500}
+                        className={classes.logo}
+                    >
+                        Ride's Warehouse
+                    </Text>
+                </Group>
                 <Group className={classes.links}>{items}</Group>
-            </Container>
+                <Group spacing={0} position="right" noWrap>
+                    <ActionIcon
+                        href="https://github.com/Saifurrahmanemon"
+                        component="a"
+                        size="lg"
+                    >
+                        <BrandTwitter size={18} />
+                    </ActionIcon>
+                    <ActionIcon
+                        href="https://github.com/Saifurrahmanemon"
+                        component="a"
+                        size="lg"
+                    >
+                        <BrandYoutube size={18} />
+                    </ActionIcon>
+                    <ActionIcon
+                        href="https://github.com/Saifurrahmanemon"
+                        component="a"
+                        size="lg"
+                    >
+                        <BrandInstagram size={18} />
+                    </ActionIcon>
+                </Group>
+            </div>
         </div>
     );
 }

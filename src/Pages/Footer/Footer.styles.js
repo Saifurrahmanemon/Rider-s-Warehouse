@@ -2,7 +2,7 @@ import { createStyles } from "@mantine/core";
 
 export const useFooterStyles = createStyles((theme) => ({
     footer: {
-        marginTop: 20,
+        marginTop: 50,
         borderTop: `1px solid ${
             theme.colorScheme === "dark"
                 ? theme.colors.dark[5]
@@ -14,16 +14,24 @@ export const useFooterStyles = createStyles((theme) => ({
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        paddingBottom: theme.spacing.md,
+        padding: `${theme.spacing.md}px ${theme.spacing.md}px`,
 
-        [theme.fn.smallerThan("xs")]: {
+        [theme.fn.smallerThan("sm")]: {
             flexDirection: "column",
         },
     },
 
     links: {
-        [theme.fn.smallerThan("xs")]: {
-            marginTop: theme.spacing.sm,
+        [theme.fn.smallerThan("sm")]: {
+            marginTop: theme.spacing.lg,
+            marginBottom: theme.spacing.sm,
         },
+    },
+    logo: {
+        fontFamily: "Caveat",
+        fontWeight: 500,
+        fontSize: theme.spacing.xl,
+        marginTop: 8,
+        paddingRight: 10,
     },
 }));

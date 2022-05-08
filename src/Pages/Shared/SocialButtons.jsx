@@ -14,7 +14,7 @@ export function GoogleButton(props) {
         />
     );
 }
-
+// not using kept for future use
 export function FacebookButton(props) {
     return (
         <Button
@@ -30,7 +30,7 @@ export function FacebookButton(props) {
         />
     );
 }
-
+// not using kept for future use
 export function GithubButton(props) {
     return (
         <Button

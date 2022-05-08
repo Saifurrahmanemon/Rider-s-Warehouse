@@ -18,7 +18,7 @@ const SocialLogin = () => {
         if (token) {
             showNotification({
                 color: "violet",
-                title: `Welcome ${user?.user?.displayName}`,
+                title: `Welcome back ${user?.user?.displayName}`,
                 message: "You have successfully logged in! 😊",
             });
             navigate(from, { replace: true });
