@@ -39,8 +39,8 @@ export default function ManageInventories() {
         const url = `https://radiant-anchorage-61997.herokuapp.com/inventories/${id}`;
         const proceed = window.confirm("Are you sure?");
         if (proceed) {
-            const { data } = await axios.delete(url);
-            console.log(data);
+            await axios.delete(url);
+
             const remainingInventories = inventories.filter(
                 (inventory) => inventory._id !== id
             );
