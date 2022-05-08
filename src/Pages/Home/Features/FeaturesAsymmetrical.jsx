@@ -1,4 +1,4 @@
-import { Container, SimpleGrid } from "@mantine/core";
+import { Box, SimpleGrid } from "@mantine/core";
 import { Certificate, Coin, Truck } from "tabler-icons-react";
 import SectionTitle from "../../Shared/SectionTitle";
 import Feature from "./Features";
@@ -27,7 +27,7 @@ export function FeaturesAsymmetrical() {
     ));
 
     return (
-        <Container mt={30} mb={30}>
+        <Box mt={30} mb={30}>
             <SectionTitle>Features</SectionTitle>
             <SimpleGrid
                 cols={3}
@@ -36,6 +36,6 @@ export function FeaturesAsymmetrical() {
             >
                 {items}
             </SimpleGrid>
-        </Container>
+        </Box>
     );
 }

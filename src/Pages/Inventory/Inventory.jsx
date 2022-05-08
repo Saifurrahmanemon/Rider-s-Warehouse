@@ -1,4 +1,4 @@
-import { Button, Center, Container, Grid } from "@mantine/core";
+import { Button, Center, Grid } from "@mantine/core";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import useInventories from "../../Hooks/useInventories";
@@ -11,27 +11,26 @@ const Inventory = () => {
     return (
         <div>
             <SectionTitle>Inventories</SectionTitle>
-            <Container size="md">
-                <Grid>
-                    {" "}
-                    {inventories.slice(0, 6).map((item) => (
-                        <Grid.Col md={4} lg={3} key={item._id}>
-                            <InventoryItem item={item}></InventoryItem>
-                        </Grid.Col>
-                    ))}
-                </Grid>
-                <Center>
-                    <Button
-                        onClick={() => navigate("/inventory/manageInventories")}
-                        variant="default"
-                        size="sm"
-                        mt={15}
-                        px={40}
-                    >
-                        Manage Inventories
-                    </Button>
-                </Center>
-            </Container>
+
+            <Grid>
+                {" "}
+                {inventories.slice(0, 6).map((item) => (
+                    <Grid.Col md={4} lg={3} key={item._id}>
+                        <InventoryItem item={item}></InventoryItem>
+                    </Grid.Col>
+                ))}
+            </Grid>
+            <Center>
+                <Button
+                    onClick={() => navigate("/inventory/manageInventories")}
+                    variant="default"
+                    size="sm"
+                    mt={15}
+                    px={40}
+                >
+                    Manage Inventories
+                </Button>
+            </Center>
         </div>
     );
 };

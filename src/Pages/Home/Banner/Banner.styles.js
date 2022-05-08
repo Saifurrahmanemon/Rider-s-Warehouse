@@ -6,7 +6,7 @@ export const useBannerStyles = createStyles((theme) => ({
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundImage:
-            "linear-gradient(250deg, rgba(130, 201, 30, 0) 0%, #062343 70%), url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1080&q=80)",
+            "linear-gradient(250deg, rgba(130, 201, 30, 0) 0%, #062343 70%), url(https://images.unsplash.com/photo-1611241443322-b5524914fe20?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)",
         paddingTop: theme.spacing.xl * 3,
         paddingBottom: theme.spacing.xl * 3,
     },
@@ -42,7 +42,7 @@ export const useBannerStyles = createStyles((theme) => ({
         fontWeight: 900,
         lineHeight: 1.05,
         maxWidth: 500,
-        fontSize: 47,
+        fontSize: 43,
 
         [theme.fn.smallerThan("md")]: {
             maxWidth: "100%",
@@ -62,10 +62,10 @@ export const useBannerStyles = createStyles((theme) => ({
     },
 
     control: {
-        paddingLeft: 50,
-        paddingRight: 50,
+        paddingLeft: 40,
+        paddingRight: 40,
         fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-        fontSize: 22,
+        fontSize: 18,
 
         [theme.fn.smallerThan("md")]: {
             width: "100%",
