@@ -4,15 +4,26 @@ import React, { useEffect } from "react";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
+import useToken from "../../Hooks/useToken";
 import Loading from "./Loading";
 import { GoogleButton } from "./SocialButtons";
 
 const SocialLogin = () => {
+    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
+    const [token] = useToken(user);
     const navigate = useNavigate();
-    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-
+    useEffect(() => {
+        if (token) {
+            showNotification({
+                color: "violet",
+                title: `Welcome ${user?.user?.displayName}`,
+                message: "You have successfully logged in! 😊",
+            });
+            navigate(from, { replace: true });
+        }
+    }, [user, token, from, navigate]);
     useEffect(() => {
         if (error) {
             switch (error?.code) {
@@ -33,16 +44,6 @@ const SocialLogin = () => {
             }
         }
     }, [error]);
-    useEffect(() => {
-        if (user) {
-            showNotification({
-                color: "violet",
-                title: `Welcome ${user?.user?.displayName}`,
-                message: "You have successfully logged in! 😊",
-            });
-            navigate(from, { replace: true });
-        }
-    }, [user, from, navigate]);
 
     if (loading) {
         return <Loading />;

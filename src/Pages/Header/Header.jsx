@@ -136,6 +136,7 @@ export function AppHeader() {
                             style={styles}
                         >
                             {items}
+                            {user && itemsForUsers}
                         </Paper>
                     )}
                 </Transition>

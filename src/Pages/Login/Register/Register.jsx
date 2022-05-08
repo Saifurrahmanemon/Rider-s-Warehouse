@@ -11,24 +11,41 @@ import {
     TextInput,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import React from "react";
+import { showNotification } from "@mantine/notifications";
+import React, { useEffect } from "react";
 import {
     useCreateUserWithEmailAndPassword,
     useUpdateProfile,
 } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
+import useToken from "../../../Hooks/useToken";
 import Loading from "../../Shared/Loading";
 import SocialLogin from "../../Shared/SocialLogin";
 
 export default function Register(props) {
     // for creating user
-    const [createUserWithEmailAndPassword, , loading] =
+
+    const [createUserWithEmailAndPassword, user, loading, error] =
         useCreateUserWithEmailAndPassword(auth, {
             sendEmailVerification: true,
         });
     const [updateProfile, updating] = useUpdateProfile(auth);
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
     const navigate = useNavigate();
+    const [token] = useToken(user);
+
+    useEffect(() => {
+        if (token) {
+            showNotification({
+                color: "green",
+                title: `Yay!! 😀`,
+                message: "You have successfully Registered ! 😊",
+            });
+            navigate(from, { replace: true });
+        }
+    }, [from, navigate, token]);
 
     // for from validation
     const form = useForm({
@@ -57,8 +74,6 @@ export default function Register(props) {
     const handleRegisterOnSubmit = async ({ name, password, email }) => {
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
-        console.log("profile updated");
-        navigate("/");
     };
 
     if (loading || updating) {

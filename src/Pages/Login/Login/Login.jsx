@@ -15,6 +15,7 @@ import React, { useEffect } from "react";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
+import useToken from "../../../Hooks/useToken";
 import Loading from "../../Shared/Loading";
 import SocialLogin from "../../Shared/SocialLogin";
 function Login(props) {
@@ -24,12 +25,17 @@ function Login(props) {
     let from = location.state?.from?.pathname || "/";
     const [signInWithEmailAndPassword, user, loading, error] =
         useSignInWithEmailAndPassword(auth);
-
+    const [token] = useToken(user);
     useEffect(() => {
-        if (user) {
+        if (token) {
+            showNotification({
+                color: "violet",
+                title: `Welcome ${user?.user?.displayName}`,
+                message: "You have successfully logged in! 😊",
+            });
             navigate(from, { replace: true });
         }
-    }, [user, from, navigate]);
+    }, [token, user, from, navigate]);
     useEffect(() => {
         if (error) {
             switch (error?.code) {

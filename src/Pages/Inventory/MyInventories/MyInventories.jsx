@@ -8,28 +8,55 @@ import {
     Text,
 } from "@mantine/core";
 import axios from "axios";
+import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Messages, Note, Trash } from "tabler-icons-react";
+import { useNavigate } from "react-router-dom";
+import { Note, Trash, TruckDelivery } from "tabler-icons-react";
+import axiosPrivate from "../../../api/axiosPrivate";
 import auth from "../../../firebase.init";
+import ShowUserProfile from "../../Shared/ShowUserProfile";
 
 const MyInventories = () => {
-    const [inventories, setInventories] = useState([]);
+    const navigate = useNavigate();
+    const [myInventories, setMyInventories] = useState([]);
     const [user] = useAuthState(auth);
-    const email = user?.email;
+
+    const name = user?.displayName;
+    const img = user?.photoURL;
 
     useEffect(() => {
         const getInventories = async () => {
-            const { data } = await axios.get(
-                `http://localhost:5000/myItems?email=${email}`
-            );
-            setInventories(data);
+            const email = user?.email;
+            const url = `http://localhost:5000/myItems?email=${email}`;
+            try {
+                const { data } = await axiosPrivate.get(url);
+                setMyInventories(data);
+            } catch (err) {
+                console.log(err.message);
+                if (err.response.status === 401 || 403) {
+                    signOut(auth);
+                    navigate("/login");
+                }
+            }
         };
         getInventories();
-    }, [inventories, user, email]);
+    }, [navigate, user]);
 
+    const handleDeleteItem = async (id) => {
+        const url = `http://localhost:5000/inventories/${id}`;
+        const proceed = window.confirm("Are you sure?");
+        if (proceed) {
+            const { data } = await axios.delete(url);
+            console.log(data);
+            const remainingInventories = myInventories.filter(
+                (inventory) => inventory._id !== id
+            );
+            setMyInventories(remainingInventories);
+        }
+    };
     // rows for data
-    const rows = inventories.map((item) => (
+    const rows = myInventories.map((item) => (
         <tr key={item._id}>
             <td>
                 <Group spacing="sm">
@@ -46,7 +73,7 @@ const MyInventories = () => {
             </td>
             <td>
                 <Text size="sm" weight={500} color="gray">
-                    {email}
+                    {user?.email}
                 </Text>
                 <Text size="xs" color="dimmed">
                     Creator's Email
@@ -79,13 +106,23 @@ const MyInventories = () => {
             <td>
                 <Group spacing={0} position="right">
                     <Menu transition="pop" withArrow placement="end">
-                        <Menu.Item icon={<Messages size={16} />}>
+                        <Menu.Item
+                            onClick={() => navigate(`/inventory/${item._id}`)}
+                            icon={<TruckDelivery size={16} />}
+                        >
                             Delivered Item
                         </Menu.Item>
-                        <Menu.Item icon={<Note size={16} />}>
+                        <Menu.Item
+                            onClick={() => navigate(`/inventory/addInventory`)}
+                            icon={<Note size={16} />}
+                        >
                             Add New Item
                         </Menu.Item>
-                        <Menu.Item icon={<Trash size={16} />} color="red">
+                        <Menu.Item
+                            onClick={() => handleDeleteItem(item._id)}
+                            icon={<Trash size={16} />}
+                            color="red"
+                        >
                             Delete Item
                         </Menu.Item>
                     </Menu>
@@ -96,10 +133,21 @@ const MyInventories = () => {
     return (
         <div>
             <Container>
-                <h1>my inventories </h1>
+                <Group position="left" my={20}>
+                    <ShowUserProfile
+                        image={img}
+                        name={name}
+                        email={user?.email}
+                    ></ShowUserProfile>
+                </Group>
 
                 <ScrollArea>
-                    <Table sx={{ minWidth: 800 }} verticalSpacing="md">
+                    <Table
+                        striped
+                        highlightOnHover
+                        sx={{ minWidth: 800 }}
+                        verticalSpacing="sm"
+                    >
                         <tbody>{rows}</tbody>
                     </Table>
                 </ScrollArea>

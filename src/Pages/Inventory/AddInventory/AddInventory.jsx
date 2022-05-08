@@ -35,8 +35,6 @@ export default function AddInventory() {
         },
     });
     const handleOnSubmit = async (values) => {
-        console.log(values);
-
         const { data } = await axios.post(
             "http://localhost:5000/addInventory",
             values

@@ -14,7 +14,7 @@ import {
 import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Pencil, Trash } from "tabler-icons-react";
+import { Trash } from "tabler-icons-react";
 import useInventories from "../../../Hooks/useInventories";
 
 const companyColors = {
@@ -23,10 +23,10 @@ const companyColors = {
     suzuki: "pink",
 };
 
-const itemStatus = {
-    available: "green",
-    notAvailable: "red",
-};
+// const itemStatus = {
+//     available: "green",
+//     notAvailable: "red",
+// };
 
 export default function ManageInventories() {
     const navigate = useNavigate();
@@ -91,9 +91,6 @@ export default function ManageInventories() {
             </td>
             <td>
                 <Group spacing={0} position="right">
-                    <ActionIcon>
-                        <Pencil size={16} />
-                    </ActionIcon>
                     <ActionIcon
                         onClick={() => handleDeleteItem(item._id)}
                         color="red"
