@@ -7,13 +7,13 @@ import {
     Table,
     Text,
 } from "@mantine/core";
-import axios from "axios";
 import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { Note, Trash, TruckDelivery } from "tabler-icons-react";
 import axiosPrivate from "../../../api/axiosPrivate";
+import deleteInventory from "../../../api/deleteInventory";
 import auth from "../../../firebase.init";
 import ShowUserProfile from "../../Shared/ShowUserProfile";
 
@@ -28,7 +28,7 @@ const MyInventories = () => {
     useEffect(() => {
         const getInventories = async () => {
             const email = user?.email;
-            const url = `https://radiant-anchorage-61997.herokuapp.com/myItems?email=${email}`;
+            const url = `http://localhost:5000/myItems?email=${email}`;
             try {
                 const { data } = await axiosPrivate.get(url);
                 setMyInventories(data);
@@ -43,10 +43,9 @@ const MyInventories = () => {
     }, [navigate, user]);
 
     const handleDeleteItem = async (id) => {
-        const url = `https://radiant-anchorage-61997.herokuapp.com/inventories/${id}`;
         const proceed = window.confirm("Are you sure?");
         if (proceed) {
-            await axios.delete(url);
+            deleteInventory(id);
 
             const remainingInventories = myInventories.filter(
                 (inventory) => inventory._id !== id

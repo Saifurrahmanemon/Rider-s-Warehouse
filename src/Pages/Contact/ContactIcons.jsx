@@ -20,13 +20,16 @@ const useStyles = createStyles((theme, { variant }) => ({
 
     title: {
         color:
-            variant === "gradient"
-                ? theme.colors.gray[6]
-                : theme.colors[theme.primaryColor][0],
+            theme.colorScheme === "dark"
+                ? theme.colors.dark[2]
+                : theme.colors.gray[6],
     },
 
     description: {
-        color: variant === "gradient" ? theme.black : theme.white,
+        color:
+            theme.colorScheme === "dark"
+                ? theme.colors.dark[3]
+                : theme.colors.gray[8],
     },
 }));
 

@@ -11,10 +11,10 @@ import {
     Text,
     useMantineTheme,
 } from "@mantine/core";
-import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Trash } from "tabler-icons-react";
+import deleteInventoryApi from "../../../api/deleteInventory";
 import useInventories from "../../../Hooks/useInventories";
 
 const companyColors = {
@@ -36,11 +36,9 @@ export default function ManageInventories() {
     const theme = useMantineTheme();
 
     const handleDeleteItem = async (id) => {
-        const url = `https://radiant-anchorage-61997.herokuapp.com/inventories/${id}`;
         const proceed = window.confirm("Are you sure?");
         if (proceed) {
-            await axios.delete(url);
-
+            deleteInventoryApi(id);
             const remainingInventories = inventories.filter(
                 (inventory) => inventory._id !== id
             );

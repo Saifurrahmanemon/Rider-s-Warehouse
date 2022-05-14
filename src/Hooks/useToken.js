@@ -8,7 +8,7 @@ const useToken = (user) => {
             const email = user?.user?.email;
             if (email) {
                 const { data } = await axios.post(
-                    "https://radiant-anchorage-61997.herokuapp.com/login",
+                    "http://localhost:5000/login",
                     { email }
                 );
                 // set token to state to get access

@@ -35,6 +35,11 @@ export const useInventoryDetailsStyles = createStyles((theme) => ({
         [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
             paddingRight: 0,
             marginTop: theme.spacing.xl,
+            display: "flex",
+            flexDirection: "column",
+            textAlign: "center",
+            justifyItems: "center",
+            margin: 10,
         },
     },
 
@@ -43,6 +48,9 @@ export const useInventoryDetailsStyles = createStyles((theme) => ({
         fontFamily: `Greycliff CF, ${theme.fontFamily}`,
         lineHeight: 1,
         marginBottom: theme.spacing.md,
+        [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+            fontSize: 17,
+        },
     },
 
     controls: {
@@ -50,6 +58,9 @@ export const useInventoryDetailsStyles = createStyles((theme) => ({
         alignItems: "center",
         marginTop: theme.spacing.xl,
         width: "400px",
+        [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+            justifyContent: "center",
+        },
     },
 
     inputWrapper: {
@@ -70,5 +81,11 @@ export const useInventoryDetailsStyles = createStyles((theme) => ({
     },
     text: {
         color: theme.colorScheme === "dark" ? "white" : "black",
+        [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+            fontSize: 12,
+            margin: 20,
+        },
     },
+
+  
 }));

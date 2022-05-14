@@ -6,21 +6,24 @@ import {
     Select,
     Text,
     TextInput,
+    useMantineTheme,
 } from "@mantine/core";
+import { Dropzone, IMAGE_MIME_TYPE } from "@mantine/dropzone";
 import { useForm } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
 import axios from "axios";
-import React from "react";
+import React, { useCallback } from "react";
 import FileBase64 from "react-file-base64";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
+import { dropzoneChildren } from "../../Shared/DropZoneConfig";
 import { useAddInventoryStyles } from "./AddInventory.styles";
 
 //? 🚧 dropzone is under construction 🚧
 //* kept it for future reference
 export default function AddInventory() {
     const { classes } = useAddInventoryStyles();
-    // const theme = useMantineTheme();
+    const theme = useMantineTheme();
     const [user] = useAuthState(auth);
     let email = user?.email;
 
@@ -35,9 +38,17 @@ export default function AddInventory() {
             img: "",
         },
     });
+    //TODO: dropzone still not working
+    const onDrop = useCallback(
+        async (acceptedFiles) => {
+            const [file] = acceptedFiles;
+            form.setFieldValue("img", file);
+        },
+        [form]
+    );
     const handleOnSubmit = async (values) => {
         const { data } = await axios.post(
-            "https://radiant-anchorage-61997.herokuapp.com/addInventory",
+            "http://localhost:5000/addInventory",
             values
         );
 
@@ -107,20 +118,17 @@ export default function AddInventory() {
                     required
                     {...form.getInputProps("description")}
                 />
-                {/*! dropzone under construction  */}
-                {/* <Dropzone
-                    onDrop={(files) => {
-                        console.log(files);
-                    }}
+
+                <Dropzone
+                    onDrop={onDrop}
                     onReject={(files) => console.log("rejected files", files)}
                     maxSize={1024 ** 2}
                     accept={IMAGE_MIME_TYPE}
                     my={20}
-                    disabled
                     label="under construction"
                 >
                     {(status) => dropzoneChildren(status, theme)}
-                </Dropzone> */}
+                </Dropzone>
                 <Group my={20}>
                     <FileBase64
                         multiple={false}

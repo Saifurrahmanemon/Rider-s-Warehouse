@@ -10,11 +10,11 @@ import {
     Text,
     Title,
 } from "@mantine/core";
-import axios from "axios";
 import React, { useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { TruckDelivery } from "tabler-icons-react";
+import updateInventoryQuantityApi from "../../../api/updateInventoryQuantityApi";
 import useInventoryDetails from "../../../Hooks/useInventoryDetails";
+import DeliverInventoryButton from "../../Shared/DeliverInventoryButton";
 import { useInventoryDetailsStyles } from "./InventoryDetails.styles";
 
 const InventoryDetails = () => {
@@ -23,22 +23,15 @@ const InventoryDetails = () => {
     const { classes } = useInventoryDetailsStyles();
     const [quantityValue, setQuantityValue] = useState(0);
     const handlers = useRef();
-    const url = `https://radiant-anchorage-61997.herokuapp.com/inventories/${inventoryId}`;
     const { img, price, quantity, description, name, supplier } = inventory;
-    let updatedQuantityValue;
 
     //handle quantity update
     const handleQuantityUpdate = async () => {
-        updatedQuantityValue = quantityValue;
-        if (updatedQuantityValue <= 0) return;
-        await axios.put(url, { updatedQuantityValue });
+        updateInventoryQuantityApi(inventoryId, quantityValue);
+        console.log(quantityValue);
         setQuantityValue(0);
     };
 
-    const handleDeliveredInventory = async () => {
-        updatedQuantityValue = -1;
-        await axios.put(url, { updatedQuantityValue });
-    };
     return (
         <div className={classes.wrapper}>
             <div className={classes.body}>
@@ -69,7 +62,7 @@ const InventoryDetails = () => {
                         {quantity}
                     </Text>
                 </Text>
-                <Text size="sm" lineClamp={4} color="dimmed">
+                <Text size="sm" className={classes.text} color="dimmed">
                     {description}
                 </Text>
 
@@ -89,8 +82,9 @@ const InventoryDetails = () => {
                             onChange={(val) => setQuantityValue(val)}
                             handlersRef={handlers}
                             max={10}
-                            min={0}
+                            min={1}
                             step={1}
+                            disabled={quantityValue >= 9}
                             styles={{
                                 input: { width: 34, textAlign: "center" },
                             }}
@@ -99,6 +93,7 @@ const InventoryDetails = () => {
                         <ActionIcon
                             size={22}
                             variant="default"
+                            disabled={quantityValue >= 9}
                             onClick={() => handlers.current.increment()}
                         >
                             +
@@ -117,23 +112,8 @@ const InventoryDetails = () => {
                         restock the items
                     </Button>
                 </div>
-                <Button
-                    leftIcon={
-                        <TruckDelivery
-                            size={20}
-                            strokeWidth={2}
-                            color={"violet"}
-                        />
-                    }
-                    variant="outline"
-                    color="violet"
-                    my={20}
-                    disabled={quantity <= 0}
-                    onClick={handleDeliveredInventory}
-                >
-                    Delivered
-                </Button>
 
+                <DeliverInventoryButton />
                 <Box>
                     <Anchor
                         align="center"
