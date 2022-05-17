@@ -13,14 +13,12 @@ import { useForm } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
 import axios from "axios";
 import React, { useCallback } from "react";
-import FileBase64 from "react-file-base64";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
+import { toBase64 } from "../../../utils/toBase64Converter";
 import { dropzoneChildren } from "../../Shared/DropZoneConfig";
 import { useAddInventoryStyles } from "./AddInventory.styles";
 
-//? 🚧 dropzone is under construction 🚧
-//* kept it for future reference
 export default function AddInventory() {
     const { classes } = useAddInventoryStyles();
     const theme = useMantineTheme();
@@ -38,15 +36,26 @@ export default function AddInventory() {
             img: "",
         },
     });
-    //TODO: dropzone still not working
+
     const onDrop = useCallback(
         async (acceptedFiles) => {
             const [file] = acceptedFiles;
-            form.setFieldValue("img", file);
+
+            const img = await toBase64(file);
+            form.setFieldValue("img", img);
         },
         [form]
     );
+
+    const onReject = (files) => {
+        showNotification({
+            color: "red",
+            title: "Oops!!",
+            message: `${files[0]?.errors[0]?.code} 😕`,
+        });
+    };
     const handleOnSubmit = async (values) => {
+        console.log(values);
         const { data } = await axios.post(
             "http://localhost:5000/addInventory",
             values
@@ -121,22 +130,14 @@ export default function AddInventory() {
 
                 <Dropzone
                     onDrop={onDrop}
-                    onReject={(files) => console.log("rejected files", files)}
-                    maxSize={1024 ** 2}
+                    onReject={onReject}
+                    maxSize={512 ** 2}
                     accept={IMAGE_MIME_TYPE}
                     my={20}
-                    label="under construction"
                 >
                     {(status) => dropzoneChildren(status, theme)}
                 </Dropzone>
-                <Group my={20}>
-                    <FileBase64
-                        multiple={false}
-                        onDone={({ base64 }) =>
-                            form.setFieldValue("img", base64)
-                        }
-                    />
-                </Group>
+
                 <Group position="center" mt="md">
                     <Button
                         type="submit"

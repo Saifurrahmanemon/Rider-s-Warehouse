@@ -40,7 +40,7 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-export function ForgotPassword() {
+export default function ForgotPassword() {
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
     const emailRef = useRef("");
 

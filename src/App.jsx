@@ -4,21 +4,23 @@ import { NotificationsProvider } from "@mantine/notifications";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Blog from "./Pages/Blog/Blog";
-import Contact from "./Pages/Contact/Contact";
-import Footer from "./Pages/Footer/Footer";
-import AppHeader from "./Pages/Header/Header";
-import CustomAffix from "./Pages/Home/Affix/Affix";
-import Home from "./Pages/Home/Home";
-import AddInventory from "./Pages/Inventory/AddInventory/AddInventory";
-import InventoryDetails from "./Pages/Inventory/InventoryDetails/InventoryDetails";
-import ManageInventories from "./Pages/Inventory/ManageInventories/ManageInventories";
-import MyInventories from "./Pages/Inventory/MyInventories/MyInventories";
-import { ForgotPassword } from "./Pages/Login/ForgotPassword/ForgotPassword";
-import Login from "./Pages/Login/Login/Login";
-import Register from "./Pages/Login/Register/Register";
-import RequireAuth from "./Pages/Login/RequireAuth/RequireAuth";
-import NotFound from "./Pages/NotFound/NotFound";
+import {
+    AddInventory,
+    AppHeader,
+    Blog,
+    Contact,
+    CustomAffix,
+    Footer,
+    ForgotPassword,
+    Home,
+    InventoryDetails,
+    Login,
+    ManageInventories,
+    MyInventories,
+    NotFound,
+    Register,
+    RequireAuth,
+} from "./Pages";
 
 function App() {
     // for changing theme

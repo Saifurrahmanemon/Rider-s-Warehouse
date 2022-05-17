@@ -1,0 +1,15 @@
+export { default as Blog } from "./Blog/Blog";
+export { default as Contact } from "./Contact/Contact";
+export { default as Footer } from "./Footer/Footer";
+export { default as AppHeader } from "./Header/Header";
+export { default as CustomAffix } from "./Home/Affix/Affix";
+export { default as Home } from "./Home/Home";
+export { default as AddInventory } from "./Inventory/AddInventory/AddInventory";
+export { default as InventoryDetails } from "./Inventory/InventoryDetails/InventoryDetails";
+export { default as ManageInventories } from "./Inventory/ManageInventories/ManageInventories";
+export { default as MyInventories } from "./Inventory/MyInventories/MyInventories";
+export { default as ForgotPassword } from "./Login/ForgotPassword/ForgotPassword";
+export { default as Login } from "./Login/Login/Login";
+export { default as Register } from "./Login/Register/Register";
+export { default as RequireAuth } from "./Login/RequireAuth/RequireAuth";
+export { default as NotFound } from "./NotFound/NotFound";

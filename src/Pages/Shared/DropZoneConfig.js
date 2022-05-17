@@ -39,7 +39,7 @@ export const dropzoneChildren = (status, theme) => (
             </Text>
             <Text size="sm" color="dimmed" inline mt={7}>
                 Attach as many files as you like, each file should not exceed
-                1mb
+                512kb
             </Text>
         </div>
     </Group>
