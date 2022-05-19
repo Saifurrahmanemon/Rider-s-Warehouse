@@ -6,7 +6,7 @@ import {
     Select,
     Text,
     TextInput,
-    useMantineTheme,
+    useMantineTheme
 } from "@mantine/core";
 import { Dropzone, IMAGE_MIME_TYPE } from "@mantine/dropzone";
 import { useForm } from "@mantine/form";

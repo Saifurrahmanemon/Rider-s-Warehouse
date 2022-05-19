@@ -11,6 +11,8 @@ import {
     Text,
     useMantineTheme,
 } from "@mantine/core";
+import { useModals } from "@mantine/modals";
+import { showNotification } from "@mantine/notifications";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Trash } from "tabler-icons-react";
@@ -32,18 +34,37 @@ const companyColors = {
 export default function ManageInventories() {
     const navigate = useNavigate();
     const [inventories, setInventories] = useInventories();
+    const modals = useModals();
 
     const theme = useMantineTheme();
 
     const handleDeleteItem = async (id) => {
-        const proceed = window.confirm("Are you sure?");
-        if (proceed) {
-            deleteInventoryApi(id);
-            const remainingInventories = inventories.filter(
-                (inventory) => inventory._id !== id
-            );
-            setInventories(remainingInventories);
-        }
+        modals.openConfirmModal({
+            title: "Delete Item",
+            centered: true,
+            children: (
+                <Text size="sm">
+                    Are you sure you want to delete this item? This action is
+                    destructive and you will have to contact support to restore
+                    your data.
+                </Text>
+            ),
+            labels: { confirm: "Delete Item", cancel: "No don't delete it" },
+            confirmProps: { color: "red" },
+            onCancel: () =>
+                showNotification({
+                    color: "red",
+                    title: `Canceled`,
+                    message: "Deletion canceled",
+                }),
+            onConfirm: () => {
+                deleteInventoryApi(id);
+                const remainingInventories = inventories.filter(
+                    (inventory) => inventory._id !== id
+                );
+                setInventories(remainingInventories);
+            },
+        });
     };
 
     const rows = inventories.map(

@@ -130,7 +130,7 @@ const MyInventories = () => {
     ));
     return (
         <div>
-            <Container>
+            <Container style={{ height: "80vh" }}>
                 <Group position="left" my={20}>
                     <ShowUserProfile
                         image={img}
