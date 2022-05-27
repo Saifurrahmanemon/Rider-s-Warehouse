@@ -1,11 +1,12 @@
 import axios from "axios";
+import { API } from "./root";
 
 const updateInventoryQuantityApi = async (
-    inventoryId,
-    updatedQuantityValue
+   inventoryId,
+   updatedQuantityValue
 ) => {
-    const url = `http://localhost:5000/inventories/${inventoryId}`;
-    await axios.put(url, { updatedQuantityValue });
+   const url = `${API}/inventories/${inventoryId}`;
+   await axios.put(url, { updatedQuantityValue });
 };
 
 export default updateInventoryQuantityApi;
