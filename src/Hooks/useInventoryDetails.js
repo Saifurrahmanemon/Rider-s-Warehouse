@@ -1,13 +1,20 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { API } from "../api/root";
 
 const useInventoryDetails = (inventoryId) => {
    const [inventory, setInventory] = useState({});
-   const url = `${API}/inventories/${inventoryId}`;
+   const [loading, setLoading] = useState(false);
+   const url = `http://localhost:5000/inventories/${inventoryId}`;
    useEffect(() => {
-      axios.get(url).then(({ data }) => setInventory(data));
-   }, [url, inventory]);
+      const fetchAPI = async () => {
+         const response = await axios.get(url);
+         if (response) {
+            setInventory(response.data);
+            setLoading(!loading);
+         }
+      };
+      fetchAPI();
+   }, [loading, url]);
    return [inventory, setInventory];
 };
 
