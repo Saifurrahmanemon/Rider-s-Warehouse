@@ -5,12 +5,16 @@
 ## Inventory Management App built using React
 ----
 
-<a align="center" href="https://rider-s-warehouse.web.app/"> Rider's Warehouse</a>
-
 <br/>
 <h2>
     Rider's Warehouse
 </h2>
+
+
+<p float = 'left'>
+<a align="center" href="https://rider-s-warehouse.web.app/"><img src="HomePage.png" alt="Management website" width='500' /></a>
+<a align="center" href="https://rider-s-warehouse.web.app/"><img src="Table.png" alt="Management website" width='500' /></a>
+<div/>
 
 
 
